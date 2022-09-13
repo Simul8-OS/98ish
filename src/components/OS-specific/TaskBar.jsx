@@ -1,10 +1,8 @@
 import React, { useState } from "react"
-import { joinable } from "joinable"
 import StartMenu from "./StartMenu"
-import DateAndTime from "./DateAndTime"
+import DateAndTime from "../DateAndTime"
 
 const TaskBar = () => {
-  const [classes, setClasses] = useState(["row"])
   return (
     <div
       style={{
