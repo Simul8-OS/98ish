@@ -12,6 +12,7 @@ const TetrisWindow = ({rows, columns, setGameOver}) => {
             <Board board={board}/>
             <GameStats gameStats={gameStats}/>
             <div>Hey</div>
+            <div>Hey 2</div>
         </div>
     )
 }
