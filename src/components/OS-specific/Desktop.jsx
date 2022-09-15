@@ -25,8 +25,7 @@ const Desktop = () => {
               {/* <Applet/> */}
             </div>
           </div>
-        </div>
-      </fieldset>
+        </div> </fieldset>
     </div>
   )
 }
