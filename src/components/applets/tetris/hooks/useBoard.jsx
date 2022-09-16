@@ -1,10 +1,27 @@
-import {useState} from "react"
-import {buildBoard} from "../utils/BoardLogic"
+import {useState, useEffect} from "react"
+import {buildBoard, nextBoard} from "../utils/BoardLogic"
 
-export const useBoard = ({rows, columns}) => {
-    const board = useState(buildBoard({rows, columns}))
+export const useBoard = ({
+    rows, 
+    columns,
+    player, 
+    resetPlayer, 
+    addLinesCleared
+}) => {
 
-    return board
+    const [board, setBoard] = useState(buildBoard({ rows, columns }));
+
+    useEffect(() => {
+        setBoard((previousBoard) =>
+          nextBoard({
+            board: previousBoard,
+            player,
+            resetPlayer,
+            addLinesCleared
+          })
+        );
+      }, [player, resetPlayer, addLinesCleared]);
+
+    return [board]
 }
 
-export default useBoard
