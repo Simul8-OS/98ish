@@ -89,6 +89,8 @@ function App() {
           </mesh> */}
         </group>
       </Canvas>
+
+      
     </>
   )
 }
