@@ -1,7 +1,21 @@
-import React from "react"
+import React, { useReducer, useContext } from "react"
+import "../Tree.js"
 
 const FileExplorer = () => {
-  return <div>FileExplorer</div>
+  const cDrive = {
+    type: "folder",
+    path: "C:/",
+  }
+
+  // const typeImageMapper = {
+  //   folder: "",
+  //   textFile: "",
+  //   program: "",
+  // }
+
+  const fs = new Tree()
+
+  return <div></div>
 }
 
 export default FileExplorer
