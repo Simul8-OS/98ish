@@ -14,7 +14,7 @@ const Desktop = () => {
               x: 0,
               y: 0,
               width: 600,
-              height: 550,
+              height: 600,
             }} 
             className="p-0">
             <div className="window window-sizing">

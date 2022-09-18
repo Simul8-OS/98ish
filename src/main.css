@@ -67,8 +67,8 @@ html, body, #root {
 .tetrisBoard {
   display: grid;
   grid-gap: 2px;
-  min-width: 20vw;
-  min-height: 40vw;
+  min-width: 17.5vw;
+  min-height: 35vw;
   background: rgb(32, 0, 64);
   position: relative;
   border: 3px solid black;
@@ -115,7 +115,7 @@ html, body, #root {
 }
 
 .tetromino__l {
-  background-color: rgba(223, 217, 36, 1);
+  background-color: orangered;
 }
 
 .tetromino__o {
@@ -131,7 +131,7 @@ html, body, #root {
 }
 
 .tetromino__z {
-  background-color: rgba(240, 80, 195, 1);
+  background-color: red;
 }
 
 .tetromino_ghost {

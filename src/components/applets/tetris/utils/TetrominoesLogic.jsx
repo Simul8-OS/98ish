@@ -31,7 +31,7 @@ export const TETROMINOES = {
           [1, 1],
           [1, 1]
         ],
-        className: `${className} ${className}__o`
+        className: `${className}__o`
     },
     S: {
         shape: [
@@ -39,7 +39,7 @@ export const TETROMINOES = {
             [1, 1, 0],
             [0, 0, 0]
         ],
-        className: `${className} ${className}__s`
+        className: `${className}__s`
     },
     T: {
         shape: [
@@ -47,7 +47,7 @@ export const TETROMINOES = {
             [0, 1, 0],
             [0, 0, 0]
         ],
-        className: `${className} ${className}__t`
+        className: `${className}__t`
     },
     Z: {
         shape: [
@@ -55,7 +55,7 @@ export const TETROMINOES = {
             [0, 1, 1],
             [0, 0, 0]
         ],
-        className: `${className} ${className}__z`
+        className: `${className}__z`
     }
 }
 
@@ -78,9 +78,13 @@ export const rotate = ({ piece, direction }) => {
     return newPiece.reverse();
   };
 
+
+// this method returns a 'rows' 2D array of objects consisting of an 'occupied' status and 'className' for color
 export const transferToBoard = ({className, isOccupied, position, rows, shape}) => {
     shape.forEach((row, y) => {
         row.forEach((cell, x) => {
+            
+            // BY DEFAULT, CELLS ARE UNOCCUPIED. If cell (if array at position == 1 and not 0)
             if (cell) {
                 const occupied = isOccupied;
                 const _y = y + position.row;
