@@ -13,9 +13,10 @@ const Desktop = () => {
           <Rnd default={{
               x: 0,
               y: 0,
-              width: 700,
-              height: 350
-            }}>
+              width: 600,
+              height: 550,
+            }} 
+            className="p-0">
             <div className="window window-sizing">
               <div className="title-bar">
                 <div className="title-bar-text">Tetris for now</div>

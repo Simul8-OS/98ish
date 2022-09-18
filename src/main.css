@@ -18,6 +18,10 @@ html, body, #root {
   overflow: hidden;
 }
 
+.window {
+  cursor: default;
+}
+
 /* .window-sizing {
   resize: both;
   overflow: auto;
@@ -63,8 +67,8 @@ html, body, #root {
 .tetrisBoard {
   display: grid;
   grid-gap: 2px;
-  min-width: 17.5vw;
-  min-height: 35vw;
+  min-width: 20vw;
+  min-height: 40vw;
   background: rgb(32, 0, 64);
   position: relative;
   border: 3px solid black;
