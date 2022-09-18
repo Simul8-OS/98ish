@@ -8,3 +8,135 @@ html, body, #root {
   margin: 0;
   padding: 0;
 }
+
+/************ DESKTOP *************/
+.desktop-row {
+  height: 100vh;
+}
+
+.window-body {
+  overflow: hidden;
+}
+
+.window {
+  cursor: default;
+}
+
+/* .window-sizing {
+  resize: both;
+  overflow: auto;
+} */
+
+/***********  TETRIS  *************/
+
+.tetrisApp {
+  text-align: center;
+  color: white;
+  background-color: purple;
+  height: 80vh;
+}
+
+.tetrisGame {
+  height: 100%;
+}
+
+.tetrisMenu {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: inherit;
+}
+
+.tetrisBoardCell {
+  width: auto;
+}
+
+.tetrisWindow {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  position: relative;
+}
+
+.tetrisRow {
+  width: 100%;
+  height: 100%;
+}
+
+.tetrisBoard {
+  display: grid;
+  grid-gap: 2px;
+  min-width: 17.5vw;
+  min-height: 35vw;
+  background: rgb(32, 0, 64);
+  position: relative;
+  border: 3px solid black;
+  border-radius: 5px;
+}
+
+.tetrisGameStats {
+  list-style-type: none;
+  font-size: 1.2rem;
+  text-align: right;
+  font-weight: bold;
+  color: black;
+}
+
+.tetrisPreview {
+  background: rgba(0, 0, 0, 0.1);
+  border: 10px solid rgba(0, 0, 0, 0);
+}
+
+.tetrisPreviewBoard {
+  display: grid;
+  gap: 2px;
+  grid-template-rows: repeat(4, 1fr);
+  grid-template-columns: repeat(4, 1fr);
+  width: 11vh;
+  height: 11vh;
+}
+
+.tetrisGameController {
+  position: absolute;
+  top: -100em;
+}
+
+.tetromino.ghost {
+  opacity: 0;
+}
+
+.tetromino__i {
+  background-color: rgba(80, 227, 230, 1);
+}
+
+.tetromino__j {
+  background-color: rgba(36, 95, 223, 1);
+}
+
+.tetromino__l {
+  background-color: orangered;
+}
+
+.tetromino__o {
+  background-color: rgba(223, 217, 36, 1);
+}
+
+.tetromino__s {
+  background-color: rgba(48, 211, 56, 1);
+}
+
+.tetromino__t {
+  background-color: rgba(132, 61, 198, 1);
+}
+
+.tetromino__z {
+  background-color: red;
+}
+
+.tetromino_ghost {
+  background-color: transparent;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+/***********  UTILITY CLASSES ************/

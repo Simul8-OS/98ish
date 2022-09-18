@@ -20,7 +20,7 @@ const TaskBar = ({ windows, dispatch }) => {
       </div>
       <div className="col">{/* put open/minimized applets here */}</div>
       <div className="col-auto p-0">
-        <DateAndTime />
+        {/* <DateAndTime /> */}
       </div>
     </div>
   )
