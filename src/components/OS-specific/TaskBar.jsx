@@ -2,7 +2,7 @@ import React, { useState } from "react"
 import StartMenu from "./StartMenu"
 import DateAndTime from "../DateAndTime"
 
-const TaskBar = () => {
+const TaskBar = ({ windows, dispatch }) => {
   return (
     <div
       style={{
@@ -16,11 +16,11 @@ const TaskBar = () => {
       className="row position-absolute bottom-0 w-100 align-items-center m-0"
     >
       <div className="col-auto p-0 row">
-        <StartMenu />
+        <StartMenu windows={windows} dispatch={dispatch} />
       </div>
       <div className="col">{/* put open/minimized applets here */}</div>
       <div className="col-auto p-0">
-        <DateAndTime />
+        {/* <DateAndTime /> */}
       </div>
     </div>
   )

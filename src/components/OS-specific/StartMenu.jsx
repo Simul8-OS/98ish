@@ -1,6 +1,17 @@
 import React from "react"
 
-const StartMenu = (props) => {
+const StartMenu = ({ windows, dispatch }) => {
+  const handleClick = (e) => {
+    e.preventDefault()
+    dispatch({
+      type: "open_window",
+      payload: {
+        name: "Explorer",
+        minimized: false,
+      },
+    })
+  }
+
   const style = {
     backgroundColor: "#C0C0C0",
   }
@@ -15,7 +26,11 @@ const StartMenu = (props) => {
       />
       <ul style={style} className="dropdown-menu rounded-0 window p-3">
         <li>Item</li>
-        <li>My Files</li>
+        <li>
+          <a href="#" onClick={(e) => handleClick(e)}>
+            File Explorer
+          </a>
+        </li>
         <li>Programs</li>
         <li>
           <form className="dropdown-item">

@@ -3,6 +3,8 @@ import { movePlayer } from "./PlayerLogic";
 import { transferToBoard } from "./TetrominoesLogic";
 
 export const buildBoard = ({rows, columns}) => {
+    // builds each row with each column of a particular row set to defaultCell (occupied: false,
+    // className: "")
     const builtRows = Array.from({length: rows}, () => 
         Array.from({length: columns}, () => ({...defaultCell}))
     )
@@ -12,6 +14,78 @@ export const buildBoard = ({rows, columns}) => {
         size: {rows, columns}
     }
 }
+
+export const nextBoard = ({ board, player, resetPlayer, addLinesCleared }) => {
+
+  // Destructuring popped tetromino and position from player
+  const { tetromino, position } = player;
+
+  // Copy and clear spaces used by pieces that
+  // hadn't collided and occupied spaces permanently
+  let rows = board.rows.map((row) =>
+    row.map((cell) => (cell.occupied ? cell : { ...defaultCell }))
+  );
+
+  // Drop position
+  const dropPosition = findDropPosition({
+    board,
+    position,
+    shape: tetromino.shape
+  });
+
+  // Place ghost
+  const className = `${tetromino.className} ${
+    player.isFastDropping ? "" : "tetromino_ghost"
+  }`;
+  rows = transferToBoard({
+    className,
+    isOccupied: player.isFastDropping,
+    position: dropPosition,
+    rows,
+    shape: tetromino.shape
+  });
+
+  // Place the piece.
+  // If it collided, mark the board cells as collided
+  if (!player.isFastDropping) {
+    rows = transferToBoard({
+      className: tetromino.className,
+      isOccupied: player.collided,
+      position,
+      rows,
+      shape: tetromino.shape
+    });
+  }
+
+  // Check for cleared lines
+  const blankRow = rows[0].map((_) => ({ ...defaultCell }));
+  let linesCleared = 0;
+  rows = rows.reduce((acc, row) => {
+    if (row.every((column) => column.occupied)) {
+      linesCleared++;
+      acc.unshift([...blankRow]);
+    } else {
+      acc.push(row);
+    }
+
+    return acc;
+  }, []);
+
+  if (linesCleared > 0) {
+    addLinesCleared(linesCleared);
+  }
+
+  // If we collided, reset the player!
+  if (player.collided || player.isFastDropping) {
+    resetPlayer();
+  }
+
+  // Return the next board
+  return {
+    rows,
+    size: { ...board.size }
+  };
+};
 
 const findDropPosition = ({ board, position, shape }) => {
     let max = board.size.rows - position.row + 1;
@@ -70,74 +144,4 @@ const findDropPosition = ({ board, position, shape }) => {
     }
   
     return false;
-  };
-
-export const nextBoard = ({ board, player, resetPlayer, addLinesCleared }) => {
-    const { tetromino, position } = player;
-  
-    // Copy and clear spaces used by pieces that
-    // hadn't collided and occupied spaces permanently
-    let rows = board.rows.map((row) =>
-      row.map((cell) => (cell.occupied ? cell : { ...defaultCell }))
-    );
-  
-    // Drop position
-    const dropPosition = findDropPosition({
-      board,
-      position,
-      shape: tetromino.shape
-    });
-  
-    // Place ghost
-    const className = `${tetromino.className} ${
-      player.isFastDropping ? "" : "ghost"
-    }`;
-    rows = transferToBoard({
-      className,
-      isOccupied: player.isFastDropping,
-      position: dropPosition,
-      rows,
-      shape: tetromino.shape
-    });
-  
-    // Place the piece.
-    // If it collided, mark the board cells as collided
-    if (!player.isFastDropping) {
-      rows = transferToBoard({
-        className: tetromino.className,
-        isOccupied: player.collided,
-        position,
-        rows,
-        shape: tetromino.shape
-      });
-    }
-  
-    // Check for cleared lines
-    const blankRow = rows[0].map((_) => ({ ...defaultCell }));
-    let linesCleared = 0;
-    rows = rows.reduce((acc, row) => {
-      if (row.every((column) => column.occupied)) {
-        linesCleared++;
-        acc.unshift([...blankRow]);
-      } else {
-        acc.push(row);
-      }
-  
-      return acc;
-    }, []);
-  
-    if (linesCleared > 0) {
-      addLinesCleared(linesCleared);
-    }
-  
-    // If we collided, reset the player!
-    if (player.collided || player.isFastDropping) {
-      resetPlayer();
-    }
-  
-    // Return the next board
-    return {
-      rows,
-      size: { ...board.size }
-    };
   };
