@@ -18,6 +18,10 @@ html, body, #root {
   overflow: hidden;
 }
 
+.window {
+  cursor: default;
+}
+
 /* .window-sizing {
   resize: both;
   overflow: auto;
@@ -55,11 +59,16 @@ html, body, #root {
   position: relative;
 }
 
+.tetrisRow {
+  width: 100%;
+  height: 100%;
+}
+
 .tetrisBoard {
   display: grid;
   grid-gap: 2px;
-  width: 17.5vw;
-  height: 35vw;
+  min-width: 17.5vw;
+  min-height: 35vw;
   background: rgb(32, 0, 64);
   position: relative;
   border: 3px solid black;
@@ -68,20 +77,13 @@ html, body, #root {
 
 .tetrisGameStats {
   list-style-type: none;
-  font-size: 1.5rem;
-  position: absolute;
-  right: 3%;
-  bottom: 3%;
+  font-size: 1.2rem;
   text-align: right;
   font-weight: bold;
   color: black;
-
 }
 
 .tetrisPreview {
-  position: absolute;
-  top: 0;
-  left: 2.4vw;
   background: rgba(0, 0, 0, 0.1);
   border: 10px solid rgba(0, 0, 0, 0);
 }
@@ -113,7 +115,7 @@ html, body, #root {
 }
 
 .tetromino__l {
-  background-color: rgba(223, 217, 36, 1);
+  background-color: orangered;
 }
 
 .tetromino__o {
@@ -129,7 +131,7 @@ html, body, #root {
 }
 
 .tetromino__z {
-  background-color: rgba(240, 80, 195, 1);
+  background-color: red;
 }
 
 .tetromino_ghost {
