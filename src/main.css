@@ -14,6 +14,10 @@ html, body, #root {
   height: 100vh;
 }
 
+.window-body {
+  overflow: hidden;
+}
+
 /* .window-sizing {
   resize: both;
   overflow: auto;
@@ -41,7 +45,6 @@ html, body, #root {
 
 .tetrisBoardCell {
   width: auto;
-  border: 1px solid black;
 }
 
 .tetrisWindow {
@@ -55,20 +58,24 @@ html, body, #root {
 .tetrisBoard {
   display: grid;
   grid-gap: 2px;
-  width: 50%;
-  height: 90%;
+  width: 17.5vw;
+  height: 35vw;
   background: rgb(32, 0, 64);
   position: relative;
+  border: 3px solid black;
+  border-radius: 5px;
 }
 
 .tetrisGameStats {
   list-style-type: none;
-  font-size: .75rem;
+  font-size: 1.5rem;
   position: absolute;
   right: 3%;
-  bottom: 30%;
+  bottom: 3%;
   text-align: right;
   font-weight: bold;
+  color: black;
+
 }
 
 .tetrisPreview {
@@ -123,6 +130,11 @@ html, body, #root {
 
 .tetromino__z {
   background-color: rgba(240, 80, 195, 1);
+}
+
+.tetromino_ghost {
+  background-color: transparent;
+  border: 2px solid rgba(255, 255, 255, 0.2);
 }
 
 /***********  UTILITY CLASSES ************/
