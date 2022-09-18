@@ -10,7 +10,7 @@ const Board = ({board}) => {
             <div className="tetrisBoard" style={boardStyles}>
                 {board.rows.map((row, y) => 
                 row.map((cell, x) => 
-                    <BoardCell key={x+y} cell={cell}/>       
+                    <BoardCell key={x * board.size.columns + x} cell={cell}/>       
                     )
                 )}
             </div>

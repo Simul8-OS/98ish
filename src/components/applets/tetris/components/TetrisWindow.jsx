@@ -34,9 +34,17 @@ const TetrisWindow = ({rows, columns, setGameOver}) => {
 
     return (
         <div className="tetrisWindow">
-            <Board board={board}/>
-            <GameStats gameStats={gameStats}/>
-            <Previews tetrominoes={player.tetrominoes} />
+            <div className="row tetrisRow d-flex align-items-center">
+                <div className="col-3 d-flex flex-column align-items-center justify-content-center gap-4">
+                    <Previews tetrominoes={player.tetrominoes} />
+                </div>
+                <div className="col-6 d-flex justify-content-center">
+                    <Board board={board}/>
+                </div>
+                <div className="col-3 d-flex justify-content-center">
+                    <GameStats gameStats={gameStats}/>
+                </div>
+            </div>
             <GameController
                 board={board}
                 gameStats={gameStats}

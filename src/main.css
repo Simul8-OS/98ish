@@ -55,6 +55,11 @@ html, body, #root {
   position: relative;
 }
 
+.tetrisRow {
+  width: 100%;
+  height: 100%;
+}
+
 .tetrisBoard {
   display: grid;
   grid-gap: 2px;
@@ -68,20 +73,13 @@ html, body, #root {
 
 .tetrisGameStats {
   list-style-type: none;
-  font-size: 1.5rem;
-  position: absolute;
-  right: 3%;
-  bottom: 3%;
+  font-size: 1.2rem;
   text-align: right;
   font-weight: bold;
   color: black;
-
 }
 
 .tetrisPreview {
-  position: absolute;
-  top: 0;
-  left: 2.4vw;
   background: rgba(0, 0, 0, 0.1);
   border: 10px solid rgba(0, 0, 0, 0);
 }
