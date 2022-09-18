@@ -1,4 +1,4 @@
-class Item {
+export class Item {
   #name = ""
   #parent = null
 
@@ -61,7 +61,7 @@ class Item {
   }
 }
 
-class File extends Item {
+export class File extends Item {
   #type = "text"
   #mimeType = "txt"
   #textContent = ""
@@ -110,11 +110,11 @@ class File extends Item {
   }
 }
 
-const DIRECTORY_TYPE = {
+export const DIRECTORY_TYPE = {
   DEFAULT: "DEFAULT",
 }
 
-class Directory extends Item {
+export class Directory extends Item {
   #type = DIRECTORY_TYPE.DEFAULT
   #children = new Map()
 
@@ -183,7 +183,7 @@ class Directory extends Item {
   }
 }
 
-class FileSystem {
+export class FileSystem {
   #self = new Directory("root")
   #currentDirectory = this.#self
   // An array of directories
@@ -462,7 +462,7 @@ class FileSystem {
   }
 }
 
-// const fs = new FileSystem()
+export const fs = new FileSystem()
 
 // fs.createDirectory("one")
 // fs.createFile("file1")
@@ -473,14 +473,20 @@ class FileSystem {
 // fs.createDirectory("one")
 // fs.openDirectory("one")
 // const four = fs.createDirectory("four")
-// fs.openDirectory("four")
+// fs.openDirectory("one")
+// fs.createDirectory("one")
+// fs.openDirectory("one")
+// fs.openDirectory("one")
+// fs.createDirectory("two")
+// fs.openDirectory("two")
 
 // console.log(four.path)
 // fs.goBack()
 // fs.goBack(2)
-// fs.goBackToDirectory("root")
 // fs.goBackToDirectory("one")
 // fs.openDirectory("one")
+// fs.openDirectory("one")
+// fs.openDirectory("four")
 // fs.openDirectory("/")
 
 // move file named "file1" to directory of path "/one/one/four"
