@@ -4,23 +4,8 @@ import { Rnd } from "react-rnd";
 import FileExplorer from "../applets/fileExplorer/FileExplorer"
 import Tetris from "../../components/applets/tetris/Tetris"
 
-const Desktop = ({ fs }) => {
-  // console.log(windows)
+const Desktop = ({ fs, programs, windows, dispatch }) => {
 
-  const windows = [
-    {
-      name: "File Explorer",
-      minimized: false,
-    },
-    {
-      name: "Tetris",
-      minimized: false,
-    },
-    {
-      name: "Notepad",
-      minimized: false,
-    },
-  ]
   // fs.printCurrentDirectory()
 
   //example
@@ -69,32 +54,70 @@ const Desktop = ({ fs }) => {
 //          })}
 //      </div>
     <div>
-      <fieldset>
-        {/* <legend>Desktop</legend> */}
-        <div className="row desktop-row d-flex justify-content-center align-items-center pb-5">
-          <Rnd default={{
-              x: 0,
-              y: 0,
-              width: 600,
-              height: 600,
-            }} 
-            className="p-0">
-            <div className="window window-sizing">
-              <div className="title-bar">
-                <div className="title-bar-text">Tetris for now</div>
-                <div className="title-bar-controls">
-                  <button aria-label="Minimize"></button>
-                  <button aria-label="Maximize"></button>
-                  <button aria-label="Close"></button>
-                </div>
-              </div>
-              <div className="window-body">
-                <Tetris />
+    {programs && programs.map((program, index) => {
+      return (
+        <Rnd default={{
+          x: 0,
+          y: index * 100,
+          width: 50,
+          height: 50
+        }}
+        className="p-0 desktopIcon"
+        key={index}>
+          <figure className="text-center desktopIcon" onDoubleClick={()=> 
+            dispatch({type: 'open_window', payload: {name: program.name, minimized: false, maximized: false}})}>
+            <img 
+              src={program.image_url} 
+              style={{width: '50px', height: '50px'}}
+            />
+            <p>{program.name}</p>
+          </figure>
+        </Rnd>
+      )})}
+
+      <div className="row desktop-row d-flex justify-content-center align-items-center pb-5">
+      
+      {windows && windows.map((window, index) =>
+        !window.minimized && 
+        <Rnd default={{
+            x: 100 + (index*100),
+            y: 100,
+            width: 600,
+            height: 600,
+          }} 
+          className="p-0"
+          key={index}>
+          <div className="window window-sizing">
+            <div className="title-bar">
+              <div className="title-bar-text">{window.name}</div>
+              <div className="title-bar-controls">
+                <button 
+                  aria-label="Minimize" 
+                  onClick={() => 
+                    dispatch({type: 'toggle_minimize', payload: {name: window.name, minimized: window.minimized, index}})
+                  }>
+                </button>
+                <button 
+                  aria-label="Maximize" 
+                  onClick={() => 
+                    dispatch({type: 'toggle_maximize', payload: {name: window.name, maximized: window.maximized, index}})
+                  }>
+                </button>
+                <button 
+                  aria-label="Close" 
+                  onClick={() => 
+                  dispatch({type: 'close_window', payload: {name: window.name, index}})
+                  }>
+                </button>
               </div>
             </div>
-          </Rnd>
-
-        </div> </fieldset>
+            <div className="window-body">
+              <Tetris />
+            </div>
+          </div>
+        </Rnd>
+        )}
+      </div> 
     </div>
   )
 }

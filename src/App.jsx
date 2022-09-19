@@ -5,42 +5,47 @@ import { Canvas, extend } from "@react-three/fiber"
 import TaskBar from "./components/OS-specific/TaskBar"
 import Desktop from "./components/OS-specific/Desktop"
 import { fs } from "./utils/fs"
+import {programs} from "./utils/programs"
+
+//Reducer function for state of WINDOWS
+const reducer = (state, action) => {
+  switch (action.type) {
+    case "open_window":
+      return [...state, {...action.payload}]
+
+    case "close_window":
+      return state.filter((_, idx) => idx !== action.payload.index)
+
+    case "toggle_minimize":
+      return state.map((window, idx) => {
+        if (idx === action.payload.index) {
+          return { ...window, minimized: !window.minimized }
+        }
+        return window
+      })
+
+    case "toggle_maximize":
+      alert(action.type + " : " + !action.payload.maximized)
+      return state.map((window, idx) => {
+        if (idx === action.payload.index) {
+          return { ...window, maximized: !window.maximized }
+        }
+        return window
+      })
+
+    default:
+      return state
+  }
+}
 
 function App() {
-  // fs.createDirectory("C:")
-  // fs.createDirectory("Documents")
-  // fs.createDirectory("Programs")
-  // fs.createDirectory("Bookmarks")
-  // fs.printCurrentDirectory()
-  //initial state
-  const initialState = []
-  //Reducer
-  const reducer = (action) => {
-    switch (action.type) {
-      case "open_window":
-        return [...windows, action.payload]
-      case "close_window":
-        return windows.filter((window) => window.name !== action.payload.name)
-      case "toggle_minimize":
-        return windows.map((window) => {
-          if (window.name === action.payload.name) {
-            return { ...window, minimized: !minimized }
-          }
-          return window
-        })
-      // default:
-      //   return windows
-    }
-  }
-
-  //deconstructed useReducer and WindowContext
-  const [windows, dispatch] = useReducer(reducer, initialState)
+  const [windows, dispatch] = useReducer(reducer, [])
 
   return (
     <>
       <Canvas shadows camera={{ position: [-5, 2, 10], fov: 75 }}>
         <Html fullscreen>
-          <Desktop fs={fs} windows={windows} dispatch={dispatch} />
+          <Desktop fs={fs} programs={programs} windows={windows} dispatch={dispatch} />
           <TaskBar windows={windows} dispatch={dispatch} />
         </Html>
         <ambientLight intensity={0.3} />

@@ -22,10 +22,13 @@ html, body, #root {
   cursor: default;
 }
 
-/* .window-sizing {
-  resize: both;
-  overflow: auto;
-} */
+.desktopTab {
+  width: 10%;
+}
+
+.desktopIcon {
+  cursor: default;
+}
 
 /***********  TETRIS  *************/
 
