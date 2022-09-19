@@ -1,59 +1,12 @@
 import React from "react"
 import App from "../../App"
-import { Rnd } from "react-rnd";
+import { Rnd } from "react-rnd"
 import FileExplorer from "../applets/fileExplorer/FileExplorer"
 import Tetris from "../../components/applets/tetris/Tetris"
 import Hover from "../../components/applets/hover/Hover"
 
 const Desktop = ({ fs, programs, windows, dispatch }) => {
-
-  // fs.printCurrentDirectory()
-
-  //example
-  // const handleClick = (e) => {
-  //   dispatch({
-  //     type: "minimize",
-  //     payload: {
-  //       name: "tetris",
-  //     },
-  //   })
-  // }
-
-  // const handleClick = (e) => {
-  //   dispatch({
-  //     type: "close_window",
-  //     payload: {
-  //       name: "tetris",
-  //     },
-  //   })
-  // }
   return (
-//    <div className="">
-//      {/* Windows */}
-//      <div
-//        className="row row-cols-2 ps-3 position-absolute w-100 h-100 justify-content-center align-items-center"
-//        style={{ zIndex: 99 }}
-//      >
-//        {windows &&
-//          windows.map((win, idx) => {
-//            return (
-//              <div key={idx} className="col">
-//                <div className="window">
-//                  <div className="title-bar">
-//                    <div className="title-bar-text">{win.name}</div>
-//                    <div className="title-bar-controls">
-//                      <button aria-label="Minimize"></button>
-//                      <button aria-label="Maximize"></button>
-//                      <button aria-label="Close"></button>
-//                    </div>
-//                  </div>
-//                  {win.name === "Tetris" && <Tetris />}
-//                  {win.name === "File Explorer" && <FileExplorer />}
-//                </div>
-//              </div>
-//            )
-//          })}
-//      </div>
     <div>
     {programs && programs.map((program, index) => {
       return (
@@ -62,7 +15,6 @@ const Desktop = ({ fs, programs, windows, dispatch }) => {
           y: index * 100,
           width: 50,
           height: 50,
-          enableUserSelectHack: false
         }}
         className="p-0 desktopIcon"
         key={index}>
@@ -132,7 +84,7 @@ const Desktop = ({ fs, programs, windows, dispatch }) => {
         </Rnd>
         )
         })}
-      </div> 
+      </div>
     </div>
   )
 }

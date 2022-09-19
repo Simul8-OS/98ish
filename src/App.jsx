@@ -7,7 +7,16 @@ import Desktop from "./components/OS-specific/Desktop"
 import { fs } from "./utils/fs"
 import {programs} from "./utils/programs"
 
-//Reducer function for state of WINDOWS
+fs.createDirectory("C:", "drive")
+  fs.createDirectory("Documents", "documents")
+  fs.openDirectory("Documents")
+  fs.createFile("Oh wow!", "text")
+  fs.goBack()
+  fs.createDirectory("Programs", "folder")
+  fs.createDirectory("Bookmarks", "bookmarks")
+  fs.createFile("Hello World", "text")
+  fs.printCurrentDirectory()
+
 const reducer = (state, action) => {
   switch (action.type) {
     case "open_window":
@@ -68,8 +77,6 @@ function App() {
           </mesh>
         </group>
       </Canvas>
-
-      
     </>
   )
 }
