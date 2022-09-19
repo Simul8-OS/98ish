@@ -79,6 +79,7 @@ const Desktop = ({ fs, programs, windows, dispatch }) => {
             <div className="window-body">
               {window.name == "tetris" && <Tetris />}
               {window.name == "hover" && <Hover />}
+              {window.name == "my computer" && <FileExplorer fs={fs} />}
             </div>
           </div>
         </Rnd>
