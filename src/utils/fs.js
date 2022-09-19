@@ -61,16 +61,27 @@ export class Item {
   }
 }
 
+export const FILE_TYPE = {
+  TEXT: "text",
+  EXECUTABLE: "executable",
+}
+
 export class File extends Item {
   #type = "text"
   #mimeType = "txt"
   #textContent = ""
   #source = null
 
-  constructor(name = "", textContent = "", source = null) {
+  constructor(
+    name = "",
+    type = FILE_TYPE.TEXT,
+    textContent = "",
+    source = null
+  ) {
     super(name || "un-named file")
-    this.textContent = textContent
-    this.source = source
+    this.#type = FILE_TYPE[type] ? type : FILE_TYPE.TEXT
+    this.#textContent = textContent
+    this.#source = source
   }
 
   get textContent() {
@@ -111,16 +122,19 @@ export class File extends Item {
 }
 
 export const DIRECTORY_TYPE = {
-  DEFAULT: "DEFAULT",
+  folder: "folder",
+  drive: "drive",
+  documents: "documents",
+  bookmarks: "bookmarks",
 }
 
 export class Directory extends Item {
   #type = DIRECTORY_TYPE.DEFAULT
   #children = new Map()
 
-  constructor(name = "", type = DIRECTORY_TYPE.DEFAULT) {
+  constructor(name = "", type) {
     super(name || "un-named directory")
-    this.#type = DIRECTORY_TYPE[type] ? type : DIRECTORY_TYPE.DEFAULT
+    this.#type = DIRECTORY_TYPE[type] ? type : DIRECTORY_TYPE.folder
   }
 
   get content() {

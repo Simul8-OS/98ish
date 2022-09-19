@@ -1,6 +1,6 @@
 import React from "react"
 import App from "../../App"
-import { Rnd } from "react-rnd";
+import { Rnd } from "react-rnd"
 import FileExplorer from "../applets/fileExplorer/FileExplorer"
 import Tetris from "../../components/applets/tetris/Tetris"
 
@@ -42,43 +42,45 @@ const Desktop = ({ fs }) => {
   //   })
   // }
   return (
-//    <div className="">
-//      {/* Windows */}
-//      <div
-//        className="row row-cols-2 ps-3 position-absolute w-100 h-100 justify-content-center align-items-center"
-//        style={{ zIndex: 99 }}
-//      >
-//        {windows &&
-//          windows.map((win, idx) => {
-//            return (
-//              <div key={idx} className="col">
-//                <div className="window">
-//                  <div className="title-bar">
-//                    <div className="title-bar-text">{win.name}</div>
-//                    <div className="title-bar-controls">
-//                      <button aria-label="Minimize"></button>
-//                      <button aria-label="Maximize"></button>
-//                      <button aria-label="Close"></button>
-//                    </div>
-//                  </div>
-//                  {win.name === "Tetris" && <Tetris />}
-//                  {win.name === "File Explorer" && <FileExplorer />}
-//                </div>
-//              </div>
-//            )
-//          })}
-//      </div>
+    //    <div className="">
+    //      {/* Windows */}
+    //      <div
+    //        className="row row-cols-2 ps-3 position-absolute w-100 h-100 justify-content-center align-items-center"
+    //        style={{ zIndex: 99 }}
+    //      >
+    //        {windows &&
+    //          windows.map((win, idx) => {
+    //            return (
+    //              <div key={idx} className="col">
+    //                <div className="window">
+    //                  <div className="title-bar">
+    //                    <div className="title-bar-text">{win.name}</div>
+    //                    <div className="title-bar-controls">
+    //                      <button aria-label="Minimize"></button>
+    //                      <button aria-label="Maximize"></button>
+    //                      <button aria-label="Close"></button>
+    //                    </div>
+    //                  </div>
+    //                  {win.name === "Tetris" && <Tetris />}
+    //                  {win.name === "File Explorer" && <FileExplorer />}
+    //                </div>
+    //              </div>
+    //            )
+    //          })}
+    //      </div>
     <div>
       <fieldset>
         {/* <legend>Desktop</legend> */}
         <div className="row desktop-row d-flex justify-content-center align-items-center pb-5">
-          <Rnd default={{
+          <Rnd
+            default={{
               x: 0,
               y: 0,
               width: 600,
               height: 600,
-            }} 
-            className="p-0">
+            }}
+            className="p-0"
+          >
             <div className="window window-sizing">
               <div className="title-bar">
                 <div className="title-bar-text">Tetris for now</div>
@@ -88,13 +90,14 @@ const Desktop = ({ fs }) => {
                   <button aria-label="Close"></button>
                 </div>
               </div>
-              <div className="window-body">
+              {/* <div className="window-body">
                 <Tetris />
-              </div>
+              </div> */}
+              <FileExplorer fs={fs} />
             </div>
           </Rnd>
-
-        </div> </fieldset>
+        </div>{" "}
+      </fieldset>
     </div>
   )
 }
