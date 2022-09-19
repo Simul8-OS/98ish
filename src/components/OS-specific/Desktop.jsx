@@ -61,18 +61,19 @@ const Desktop = ({ fs, programs, windows, dispatch }) => {
           x: 0,
           y: index * 100,
           width: 50,
-          height: 50
+          height: 50,
+          enableUserSelectHack: false
         }}
         className="p-0 desktopIcon"
         key={index}>
-          <figure className="text-center desktopIcon" onDoubleClick={()=> 
+          <div className="text-center desktopIcon" onDoubleClick={()=> 
             dispatch({type: 'open_window', payload: {name: program.name, minimized: false, maximized: false}})}>
             <img 
               src={program.image_url} 
               style={{width: '50px', height: '50px'}}
             />
-            <p>{program.name}</p>
-          </figure>
+            <label className="desktopIconLabel">{program.name}</label>
+          </div>
         </Rnd>
       )})}
 

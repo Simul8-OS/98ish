@@ -30,6 +30,11 @@ html, body, #root {
   cursor: default;
 }
 
+.desktopIconLabel {
+  font-size: 1rem;
+  font-weight: 300;
+}
+
 /***********  TETRIS  *************/
 
 .tetrisApp {
@@ -41,6 +46,10 @@ html, body, #root {
 
 .tetrisGame {
   height: 100%;
+}
+
+.tetrisStartButton {
+  font-size: 2rem;
 }
 
 .tetrisMenu {
@@ -158,6 +167,7 @@ html, body, #root {
 
 .hoverText {
   position: absolute;
+  font-size: 2rem;
 }
 
 .hoverLoader {
@@ -184,7 +194,7 @@ html, body, #root {
   height: 15px;
   background: transparent;
   
-  border-radius: 50%;
+  
   box-shadow:
   -30px -30px 0px #00efff,
   -30px -30px 20px #00efff,
