@@ -1,37 +1,66 @@
-import React, { useState } from "react"
-import "../../../utils/imageMapper"
+import React, { useEffect, useState } from "react"
+import { imageMapper } from "../../../utils/imageMapper"
 
-const FileExplorer = () => {
+const FileExplorer = ({ fs }) => {
+  const [dir, setDir] = useState(fs.currentDirectory.content)
+
+  const handleDoubleClick = (e, item) => {
+    console.log("DoubleClick")
+    fs.openDirectory(item.name)
+    setDir(fs.currentDirectory.content)
+  }
+
+  const goUp = () => {
+    fs.goBack()
+    setDir(fs.currentDirectory.content)
+  }
+
   return (
-    <div id="media-container">
-      <h3>My Computer</h3>
-      <div className="media-controls">
-        <div>
-          <button id="go-back-btn">Back</button>
-          <div className="d-flex" id="breadcrumbs"></div>
-        </div>
-        <div>
-          <button id="create-folder-btn">Create Folder</button>
-          <label htmlFor="upload-files-btn" className="">
-            Upload File
-            <input
-              type="file"
-              id="upload-files-btn"
-              accept="*/*"
-              multiple
-              className="d-none"
-            />
-          </label>
-        </div>
+    <div className="mb-0">
+      <div className="p-1">
+        <fieldset>
+          <div className="field-row">
+            <div className="">
+              <button className="w-100" onClick={() => goUp()}>
+                <img
+                  src={"/src/assets/" + imageMapper.small_folder_up}
+                  alt=""
+                ></img>
+              </button>
+            </div>
+            <div>
+              <button id="create-folder-btn">Create Folder</button>
+            </div>
+            <div>
+              <button>
+                <label htmlFor="upload-files-btn" className="">
+                  Upload File
+                  <input
+                    type="file"
+                    id="upload-files-btn"
+                    accept="*/*"
+                    multiple
+                    className="d-none"
+                  />
+                </label>
+              </button>
+            </div>
+          </div>
+        </fieldset>
       </div>
-      <div id="container-wrapper">
-        <div className="directories">
-          <h4>Directories</h4>
-        </div>
-        <div className="files">
-          <h4>Files</h4>
-        </div>
-        {/* <p className="directory-blank">Empty Directory</p> */}
+      <div className="bg-light row row-cols-6 m-0" style={{ minHeight: 300 }}>
+        {dir.map((item, idx) => {
+          return (
+            <div key={idx} className="col p-0 text-center">
+              <img
+                src={"/src/assets/" + imageMapper[item.type]}
+                alt=""
+                onDoubleClick={(e) => handleDoubleClick(e, item)}
+              />
+              <p>{item.name}</p>
+            </div>
+          )
+        })}
       </div>
     </div>
   )

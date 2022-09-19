@@ -7,11 +7,15 @@ import Desktop from "./components/OS-specific/Desktop"
 import { fs } from "./utils/fs"
 
 function App() {
-  // fs.createDirectory("C:")
-  // fs.createDirectory("Documents")
-  // fs.createDirectory("Programs")
-  // fs.createDirectory("Bookmarks")
-  // fs.printCurrentDirectory()
+  fs.createDirectory("C:", "drive")
+  fs.createDirectory("Documents", "documents")
+  fs.openDirectory("Documents")
+  fs.createFile("Oh wow!", "text")
+  fs.goBack()
+  fs.createDirectory("Programs", "folder")
+  fs.createDirectory("Bookmarks", "bookmarks")
+  fs.createFile("Hello World", "text")
+  fs.printCurrentDirectory()
   //initial state
   const initialState = []
   //Reducer
@@ -64,8 +68,6 @@ function App() {
           </mesh>
         </group>
       </Canvas>
-
-      
     </>
   )
 }
