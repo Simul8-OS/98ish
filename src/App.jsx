@@ -6,6 +6,7 @@ import TaskBar from "./components/OS-specific/TaskBar"
 import Desktop from "./components/OS-specific/Desktop"
 import { fs } from "./utils/fs"
 import {programs} from "./utils/programs"
+import { actionIsDrop } from "./components/applets/tetris/utils/InputLogic"
 
   fs.createDirectory("C:", "drive")
   fs.createDirectory("Documents", "documents")
@@ -20,17 +21,33 @@ import {programs} from "./utils/programs"
 const reducer = (state, action) => {
   switch (action.type) {
     case "open_window":
-      return [...state, {...action.payload}]
+      return [...state.map((window, idx) => {
+        return {...window, active: false}
+      }), {...action.payload}]
 
     case "close_window":
       return state.filter((_, idx) => idx !== action.payload.index)
 
+    case "toggle_minimize_tab":
+      return state.map((window, idx) => {
+        if (idx === action.payload.index) {
+          if (action.payload.minimized === true)
+            return {...window, minimized: !window.minimized, active: true}
+          else if (action.payload.minimized === false){
+            if (action.payload.active === false)
+              return {...window, minimized: false, active: true}
+            else if (action.payload.active === true)
+              return {...window, minimized: !window.minimized, active: false}
+        }}
+        return {...window, active: false}
+      })
+    
     case "toggle_minimize":
       return state.map((window, idx) => {
         if (idx === action.payload.index) {
-          return { ...window, minimized: !window.minimized }
+          return { ...window, minimized: !window.minimized, active: false }
         }
-        return window
+        return {...window, active: false}
       })
 
     case "toggle_maximize":
@@ -39,6 +56,17 @@ const reducer = (state, action) => {
           return { ...window, maximized: !window.maximized }
         }
         return window
+      })
+
+    case "select_active":
+      return state.map((window, idx) => {
+        if (idx === action.payload.index) {
+          if (window.minimized == true)
+            return {...window, active: false}
+          else if (window.minimized == false)
+            return {...window, active: true}
+        }
+        return {...window, active: false}
       })
 
     default:

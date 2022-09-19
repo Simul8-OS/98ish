@@ -20,13 +20,20 @@ const TaskBar = ({ windows, dispatch }) => {
       </div>
       <div className="col">
         {windows && windows.map((window, index) => {
+        let tabStyle;
+
+        window.active ? 
+        tabStyle = {boxShadow: 'inset 1px 1px #0a0a0a, inset -1px -1px #fff, inset 2px 2px grey, inset -2px -2px #dfdfdf'} :
+        tabStyle = {}
+        
         return (
           <button 
+            style={tabStyle}
             key={index} 
             className="desktopTab"
-            onClick={() => 
-              dispatch({type: 'toggle_minimize', payload: {name: window.name, minimized: window.minimized, index}})
-            }>{window.name}</button>
+            onClick={() => {
+              dispatch({type: 'toggle_minimize_tab', payload: {name: window.name, minimized: window.minimized, active: window.active, index}});
+            }}>{window.name}</button>
         )})
         }
       </div>

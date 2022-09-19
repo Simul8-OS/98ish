@@ -20,10 +20,11 @@ html, body, #root {
 
 .window {
   cursor: default;
+  min-width: 300px;
 }
 
 .desktopTab {
-  width: 10%;
+  width: 15%;
 }
 
 .desktopIcon {
@@ -159,10 +160,10 @@ html, body, #root {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 80vh;
   overflow: hidden;
   background: black;
   color: white;
+  height: 80vh;
 }
 
 .hoverText {
