@@ -7,7 +7,7 @@ import Desktop from "./components/OS-specific/Desktop"
 import { fs } from "./utils/fs"
 import {programs} from "./utils/programs"
 
-fs.createDirectory("C:", "drive")
+  fs.createDirectory("C:", "drive")
   fs.createDirectory("Documents", "documents")
   fs.openDirectory("Documents")
   fs.createFile("Oh wow!", "text")
@@ -55,6 +55,7 @@ function App() {
         <Html fullscreen>
           <Desktop fs={fs} programs={programs} windows={windows} dispatch={dispatch} />
           <TaskBar windows={windows} dispatch={dispatch} />
+          
         </Html>
         <ambientLight intensity={0.3} />
         <directionalLight
