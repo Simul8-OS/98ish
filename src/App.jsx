@@ -25,7 +25,6 @@ const reducer = (state, action) => {
       })
 
     case "toggle_maximize":
-      alert(action.type + " : " + !action.payload.maximized)
       return state.map((window, idx) => {
         if (idx === action.payload.index) {
           return { ...window, maximized: !window.maximized }

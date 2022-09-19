@@ -3,6 +3,7 @@ import App from "../../App"
 import { Rnd } from "react-rnd";
 import FileExplorer from "../applets/fileExplorer/FileExplorer"
 import Tetris from "../../components/applets/tetris/Tetris"
+import Hover from "../../components/applets/hover/Hover"
 
 const Desktop = ({ fs, programs, windows, dispatch }) => {
 
@@ -77,15 +78,26 @@ const Desktop = ({ fs, programs, windows, dispatch }) => {
 
       <div className="row desktop-row d-flex justify-content-center align-items-center pb-5">
       
-      {windows && windows.map((window, index) =>
-        !window.minimized && 
+      {windows && windows.map((window, index) => {
+        const windowStyles = ["p-0"];
+
+        if (window.minimized){
+          windowStyles.push("d-none")
+        }
+
+        if (window.maximized){
+          windowStyles.push("vh-100")
+        }
+        return(
+
         <Rnd default={{
             x: 100 + (index*100),
             y: 100,
             width: 600,
             height: 600,
           }} 
-          className="p-0"
+
+          className={windowStyles.join(" ")}
           key={index}>
           <div className="window window-sizing">
             <div className="title-bar">
@@ -112,11 +124,13 @@ const Desktop = ({ fs, programs, windows, dispatch }) => {
               </div>
             </div>
             <div className="window-body">
-              <Tetris />
+              {window.name == "tetris" && <Tetris />}
+              {window.name == "hover" && <Hover />}
             </div>
           </div>
         </Rnd>
-        )}
+        )
+        })}
       </div> 
     </div>
   )
