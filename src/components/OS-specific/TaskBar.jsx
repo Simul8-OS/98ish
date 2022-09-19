@@ -18,7 +18,18 @@ const TaskBar = ({ windows, dispatch }) => {
       <div className="col-auto p-0 row">
         <StartMenu windows={windows} dispatch={dispatch} />
       </div>
-      <div className="col">{/* put open/minimized applets here */}</div>
+      <div className="col">
+        {windows && windows.map((window, index) => {
+        return (
+          <button 
+            key={index} 
+            className="desktopTab"
+            onClick={() => 
+              dispatch({type: 'toggle_minimize', payload: {name: window.name, minimized: window.minimized, index}})
+            }>{window.name}</button>
+        )})
+        }
+      </div>
       <div className="col-auto p-0">
         {/* <DateAndTime /> */}
       </div>

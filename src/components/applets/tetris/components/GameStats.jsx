@@ -16,6 +16,7 @@ const GameStats = ({gameStats}) => {
             <li><span className="text-danger">↔</span> Left/Right</li>
             <li><span className="text-danger">↑</span> Rotate</li>
             <li><span className="text-danger">Space</span> Drop</li>
+            <li><span className="text-danger">P</span> Pause</li>
             <li><span className="text-danger">Q</span> Quit</li>
             <li><span className="text-danger">Tab</span> Refocus</li>
         </ul>

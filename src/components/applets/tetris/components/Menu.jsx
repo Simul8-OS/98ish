@@ -1,8 +1,8 @@
 const Menu =({onClick}) => 
    
     <div className="tetrisMenu">
-        <button className="tetrisButton" onClick={onClick}>
-            Play Tetris
+        <button onClick={onClick}>
+            <span className="tetrisStartButton">Play Tetris</span>
         </button>
     </div>
 

@@ -22,10 +22,18 @@ html, body, #root {
   cursor: default;
 }
 
-/* .window-sizing {
-  resize: both;
-  overflow: auto;
-} */
+.desktopTab {
+  width: 10%;
+}
+
+.desktopIcon {
+  cursor: default;
+}
+
+.desktopIconLabel {
+  font-size: 1rem;
+  font-weight: 300;
+}
 
 /***********  TETRIS  *************/
 
@@ -38,6 +46,10 @@ html, body, #root {
 
 .tetrisGame {
   height: 100%;
+}
+
+.tetrisStartButton {
+  font-size: 2rem;
 }
 
 .tetrisMenu {
@@ -139,4 +151,93 @@ html, body, #root {
   border: 2px solid rgba(255, 255, 255, 0.2);
 }
 
-/***********  UTILITY CLASSES ************/
+/********************END TETRIS *****************/
+
+/******************** HOVER *********************/
+
+.hoverBody {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+  overflow: hidden;
+  background: black;
+  color: white;
+}
+
+.hoverText {
+  position: absolute;
+  font-size: 2rem;
+}
+
+.hoverLoader {
+  position: relative;
+  width: 300px;
+  height: 300px;
+}
+
+.hoverLoader span{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform: rotate(calc(16deg * var(--i)));
+}
+
+.hoverLoader span::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 15px;
+  height: 15px;
+  background: transparent;
+  
+  
+  box-shadow:
+  -30px -30px 0px #00efff,
+  -30px -30px 20px #00efff,
+  30px 30px 0px #00efff,
+  30px 30px 20px #00efff,
+  30px -30px 0px #00efff,
+  30px -30px 20px #00efff,
+  -30px 30px 0px #00efff,
+  -30px 30px 20px #00efff;
+
+  animation: animate 2s linear infinite;
+  animation-delay: calc(-.25s * var(--i));
+  transform-origin: 1px;
+  transition: 2s;
+}
+
+.hoverLoader:hover span::before {
+  transform-origin: 250px;
+
+  box-shadow:
+  -200px -200px 0px #00efff,
+  -200px -200px 20px #00efff,
+  200px 200px 0px #00efff,
+  200px 200px 20px #00efff,
+  200px -200px 0px #00efff,
+  200px -200px 20px #00efff,
+  -200px 200px 0px #00efff,
+  -200px 200px 20px #00efff;
+}
+
+@keyframes animate {
+  0% {
+      transform: rotate(0deg);
+      filter: hue-rotate(0deg);
+  }
+  100% {
+      transform: rotate(360deg);
+      filter: hue-rotate(360deg);
+  }
+}
+
+
+/******************** END HOVER *****************/
+
+/***********  SIZING UTILITY CLASSES ************/
+
