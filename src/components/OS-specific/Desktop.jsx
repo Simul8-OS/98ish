@@ -12,8 +12,8 @@ const Desktop = ({ fs, programs, windows, dispatch }) => {
     {programs && programs.map((program, index) => {
       return (
         <Rnd default={{
-          x: 0,
-          y: index * 100,
+          x: 10,
+          y: 10+ index * 100,
           width: 50,
           height: 50,
         }}
@@ -27,7 +27,7 @@ const Desktop = ({ fs, programs, windows, dispatch }) => {
               src={program.image_url} 
               style={{width: '50px', height: '50px'}}
             />
-            <label className="desktopIconLabel">{program.name}</label>
+            <label className="desktopIconLabel text-light">{program.name}</label>
           </div>
         </Rnd>
       )})}
@@ -37,24 +37,25 @@ const Desktop = ({ fs, programs, windows, dispatch }) => {
       
       
       {windows && windows.map((window, index) => {
-        const windowStyles = ["p-0"];
+        let windowStyles = ["p-0"];
         let activeStyle;
+        let maximizedStyle;
+        let maxButton = "Maximize"
 
-        if (window.minimized){
-          windowStyles.push("d-none")
-        }
-
-        if (window.maximized){
-          windowStyles.push("vh-100")
-        }
+        window.minimized ? windowStyles.push("d-none") : ""
 
         window.active ? activeStyle = {zIndex: '111111'} : activeStyle = {}
+
+        if (window.maximized){
+          maximizedStyle = {position: 'absolute', top: 0, left: 0, height: '100vh', width: '100vw'}
+          maxButton = "Restore"
+        }
 
         return(
 
         <Rnd default={{
-            x: 100 + (index*100),
-            y: 50,
+            x: 10,
+            y: 0,
             width: 600,
             height: 600
           }} 
@@ -64,23 +65,29 @@ const Desktop = ({ fs, programs, windows, dispatch }) => {
           className={windowStyles.join(" ")}
           key={index}
           style={activeStyle}>
-          <div className="window">
-            <div className="title-bar">
-              <div className="title-bar-text">{window.name}</div>
-              <div className="title-bar-controls">
+          <div className="window" style={maximizedStyle}>
+            <div className="title-bar" style={{height: '25px'}}>
+              <div className="title-bar-text d-flex align-items-center" style={{height: '100%'}}>
+                <img src="/src/assets/program_icons/tetris.png" className="taskbarIcon"/>&nbsp;
+                <span>{window.name}</span>
+              </div>
+              <div className="title-bar-controls h-100">
                 <button 
+                  className="titleBarButton"
                   aria-label="Minimize" 
                   onClick={() => 
                     dispatch({type: 'toggle_minimize', payload: {name: window.name, minimized: window.minimized, active: window.active, index}})
                   }>
                 </button>
                 <button 
-                  aria-label="Maximize" 
+                  className="titleBarButton"
+                  aria-label={maxButton}
                   onClick={() => 
                     dispatch({type: 'toggle_maximize', payload: {name: window.name, maximized: window.maximized, index}})
                   }>
                 </button>
                 <button 
+                  className="titleBarButton"
                   aria-label="Close" 
                   onClick={() => 
                   dispatch({type: 'close_window', payload: {name: window.name, index}})
@@ -88,11 +95,11 @@ const Desktop = ({ fs, programs, windows, dispatch }) => {
                 </button>
               </div>
             </div>
-            <div className="window-body">
-              {window.name == "Tetris" && <Tetris />}
-              {window.name == "Hover" && <Hover />}
-              {window.name == "My Computer" && <FileExplorer fs={fs} />}
-            </div>
+           
+            {window.name == "Tetris" && <Tetris />}
+            {window.name == "Hover" && <Hover />}
+            {window.name == "My Computer" && <FileExplorer fs={fs} />}
+          
           </div>
         </Rnd>
         )
