@@ -1,22 +1,10 @@
 import React, { useState, useReducer, useContext } from "react"
-import { BrowserRouter, Outlet, Routes, Route } from "react-router-dom"
 import { Html, softShadows, OrbitControls } from "@react-three/drei"
 import { Canvas, extend } from "@react-three/fiber"
 import TaskBar from "./components/OS-specific/TaskBar"
 import Desktop from "./components/OS-specific/Desktop"
 import { fs } from "./utils/fs"
-import {programs} from "./utils/programs"
-import { actionIsDrop } from "./components/applets/tetris/utils/InputLogic"
-
-  fs.createDirectory("C:", "drive")
-  fs.createDirectory("Documents", "documents")
-  fs.openDirectory("Documents")
-  fs.createFile("Oh wow!", "text")
-  fs.goBack()
-  fs.createDirectory("Programs", "folder")
-  fs.createDirectory("Bookmarks", "bookmarks")
-  fs.createFile("Hello World", "text")
-  fs.printCurrentDirectory()
+import { programs } from "./utils/programs"
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -24,6 +12,7 @@ const reducer = (state, action) => {
       return [...state.map((window, idx) => {
         return {...window, active: false}
       }), {...action.payload}]
+
 
     case "close_window":
       return state.filter((_, idx) => idx !== action.payload.index)
@@ -81,9 +70,13 @@ function App() {
     <>
       <Canvas shadows camera={{ position: [-5, 2, 10], fov: 75 }}>
         <Html fullscreen>
-          <Desktop fs={fs} programs={programs} windows={windows} dispatch={dispatch} />
+          <Desktop
+            fs={fs}
+            programs={programs}
+            windows={windows}
+            dispatch={dispatch}
+          />
           <TaskBar windows={windows} dispatch={dispatch} />
-          
         </Html>
         <ambientLight intensity={0.3} />
         <directionalLight

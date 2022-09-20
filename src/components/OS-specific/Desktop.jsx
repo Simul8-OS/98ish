@@ -2,6 +2,7 @@ import React from "react"
 import App from "../../App"
 import { Rnd } from "react-rnd"
 import FileExplorer from "../applets/fileExplorer/FileExplorer"
+import TextEditor from "../applets/textEditor/TextEditor"
 import Tetris from "../../components/applets/tetris/Tetris"
 import Hover from "../../components/applets/hover/Hover"
 
@@ -98,8 +99,8 @@ const Desktop = ({ fs, programs, windows, dispatch }) => {
            
             {window.name == "Tetris" && <Tetris />}
             {window.name == "Hover" && <Hover />}
-            {window.name == "My Computer" && <FileExplorer fs={fs} />}
-          
+            {window.name == "My Computer" && <FileExplorer fs={fs} dispatch={dispatch} />}
+            {window.name == "Notepad" && (<TextEditor file={window.file} />)}
           </div>
         </Rnd>
         )

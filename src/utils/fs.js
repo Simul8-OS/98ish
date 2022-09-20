@@ -62,8 +62,11 @@ export class Item {
 }
 
 export const FILE_TYPE = {
-  TEXT: "text",
-  EXECUTABLE: "executable",
+  text: "text",
+  executable: "executable",
+  note: "note",
+  internet: "internet",
+  dos: "dos",
 }
 
 export class File extends Item {
@@ -478,30 +481,34 @@ export class FileSystem {
 
 export const fs = new FileSystem()
 
-// fs.createDirectory("one")
-// fs.createFile("file1")
+fs.createDirectory("C:", "drive")
+fs.openDirectory("C:")
+fs.createDirectory("Documents", "documents")
+fs.openDirectory("Documents")
+fs.createFile("Oh wow!", "text")
+fs.createFile("Look at that", "text")
+fs.createFile("Isn't that something?", "text")
+fs.createFile("Sure is", "text")
+fs.goBack()
+fs.createDirectory("Programs", "folder")
+fs.createDirectory("Bookmarks", "bookmarks")
+fs.openDirectory("Bookmarks")
+fs.createFile("Tim Tang", "internet")
+fs.createFile("AOL", "internet")
+fs.createFile("Yahoo", "internet")
+fs.createFile("AskJeeves", "internet")
+fs.createFile("Geocities", "internet")
+fs.createFile("eBay", "internet")
+fs.createFile("IMDb", "internet")
+fs.goBack()
+fs.createFile("Hello World", "text", "Hello World!")
+fs.createFile("README", "note", "some stuff")
+fs.createFile("Cover Letter", "text")
+fs.printCurrentDirectory()
 
-// fs.openDirectory("one")
-// fs.createDirectory("two")
-// fs.createDirectory("three")
-// fs.createDirectory("one")
-// fs.openDirectory("one")
-// const four = fs.createDirectory("four")
-// fs.openDirectory("one")
-// fs.createDirectory("one")
-// fs.openDirectory("one")
-// fs.openDirectory("one")
-// fs.createDirectory("two")
-// fs.openDirectory("two")
-
-// console.log(four.path)
 // fs.goBack()
-// fs.goBack(2)
 // fs.goBackToDirectory("one")
 // fs.openDirectory("one")
-// fs.openDirectory("one")
-// fs.openDirectory("four")
-// fs.openDirectory("/")
 
 // move file named "file1" to directory of path "/one/one/four"
 // const dir = fs.moveItemTo("file1", "/one/one/four")
