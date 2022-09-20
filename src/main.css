@@ -14,18 +14,6 @@ html, body, #root {
   height: 100vh;
 }
 
-.window-body {
-  overflow: hidden;
-}
-
-.window {
-  cursor: default;
-}
-
-.desktopTab {
-  width: 10%;
-}
-
 .desktopIcon {
   cursor: default;
 }
@@ -35,13 +23,72 @@ html, body, #root {
   font-weight: 300;
 }
 
+/************ END DESKTOP *************/
+
+/************** WINDOWS **************/
+
+.title-bar-text {
+  font-size: initial;
+}
+
+.titleBarButton {
+  width: 19px;
+}
+
+.window {
+  cursor: default;
+  min-width: 300px;
+  min-height: 25px;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* .window-body {
+  height: inherit;
+} */
+
+/************ TASKBAR *************/
+
+.taskbar {
+  padding: 2px;
+  box-shadow: inset 1px 0 #fff;
+  background-color: #C0C0C0;
+  border-top: 1px solid #f4f4f4;
+  border-bottom: 1px solid #4e4e4e;
+  z-index: 99;
+  height: 35px;
+}
+
+.taskbarLeft, .taskbarRight, .taskbarTab {
+  height: 100%;
+}
+
+.taskbarTab {
+  width: 15%;
+  font-weight: 500;
+}
+
+.taskbarIcon {
+  height: -webkit-fill-available;
+}
+/************ END TASKBAR *************/
+
+/************* START MENU *************/
+
+.dropup, .dropdown-toggle {
+  height: 100%;
+}
+
+/************ END START MENU **********/
+
 /***********  TETRIS  *************/
 
 .tetrisApp {
   text-align: center;
   color: white;
   background-color: purple;
-  height: 80vh;
+  height: 100%; 
+  overflow: hidden;
 }
 
 .tetrisGame {
@@ -79,8 +126,8 @@ html, body, #root {
 .tetrisBoard {
   display: grid;
   grid-gap: 2px;
-  min-width: 17.5vw;
-  min-height: 35vw;
+  min-width: 20vw;
+  min-height: 40vw;
   background: rgb(32, 0, 64);
   position: relative;
   border: 3px solid black;
@@ -159,10 +206,10 @@ html, body, #root {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 80vh;
   overflow: hidden;
   background: black;
   color: white;
+  height: inherit;
 }
 
 .hoverText {
