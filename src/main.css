@@ -55,7 +55,7 @@ html, body, #root {
   background-color: #C0C0C0;
   border-top: 1px solid #f4f4f4;
   border-bottom: 1px solid #4e4e4e;
-  z-index: 99;
+  z-index: 99999999;
   height: 35px;
 }
 
@@ -68,9 +68,6 @@ html, body, #root {
   font-weight: 500;
 }
 
-.taskbarIcon {
-  height: -webkit-fill-available;
-}
 /************ END TASKBAR *************/
 
 /************* START MENU *************/
@@ -209,7 +206,7 @@ html, body, #root {
   overflow: hidden;
   background: black;
   color: white;
-  height: inherit;
+  height: 100%;
 }
 
 .hoverText {

@@ -5,6 +5,7 @@ import TaskBar from "./components/OS-specific/TaskBar"
 import Desktop from "./components/OS-specific/Desktop"
 import { fs } from "./utils/fs"
 import { programs } from "./utils/programs"
+import { actionIsDrop } from "./components/applets/tetris/utils/InputLogic"
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -15,7 +16,13 @@ const reducer = (state, action) => {
 
 
     case "close_window":
-      return state.filter((_, idx) => idx !== action.payload.index)
+      return state.map((window, idx) => {
+        if (idx === action.payload.index){
+          return {...window, closed: true}
+        }
+        return window
+      })
+      // return state.filter((_, idx) => idx !== action.payload.index)
 
     case "toggle_minimize_tab":
       return state.map((window, idx) => {
@@ -42,7 +49,7 @@ const reducer = (state, action) => {
     case "toggle_maximize":
       return state.map((window, idx) => {
         if (idx === action.payload.index) {
-          return { ...window, maximized: !window.maximized }
+            return { ...window, maximized: !window.maximized }
         }
         return window
       })
@@ -56,6 +63,14 @@ const reducer = (state, action) => {
             return {...window, active: true}
         }
         return {...window, active: false}
+      })
+
+    case "setWindowPosition":
+      return state.map((window, idx) => {
+        if (idx === action.payload.index) {
+          return {...window, positionX: action.payload.positionX, positionY: action.payload.positionY}
+        }
+        return window
       })
 
     default:

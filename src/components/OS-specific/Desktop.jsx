@@ -21,7 +21,17 @@ const Desktop = ({ fs, programs, windows, dispatch }) => {
         className="p-0 desktopIcon"
         key={index}>
           <div className="text-center desktopIcon" onDoubleClick={()=> {
-            dispatch({type: 'open_window', payload: {name: program.name, minimized: false, maximized: false, active: true}});
+            dispatch({type: 'open_window', payload: {
+                                              name: program.name, 
+                                              minimized: false, 
+                                              maximized: false, 
+                                              active: true, 
+                                              closed: false, 
+                                              width: program.width, 
+                                              height: program.height,
+                                              positionX: 10,
+                                              positionY: 0,
+                                              icon_url: program.icon_url}});
             }}>
 
             <img 
@@ -34,42 +44,53 @@ const Desktop = ({ fs, programs, windows, dispatch }) => {
       )})}
 
       <div className="row desktop-row d-flex justify-content-center align-items-center pb-5">
-
       
       
       {windows && windows.map((window, index) => {
+
         let windowStyles = ["p-0"];
         let activeStyle;
         let maximizedStyle;
         let maxButton = "Maximize"
+        let resizingValue = true
+        let draggingValue = false
 
         window.minimized ? windowStyles.push("d-none") : ""
 
         window.active ? activeStyle = {zIndex: '111111'} : activeStyle = {}
 
         if (window.maximized){
-          maximizedStyle = {position: 'absolute', top: 0, left: 0, height: '100vh', width: '100vw'}
+          maximizedStyle = {height: '100vh', width: '100.3vw', transform: `translate(-${window.positionX}px, -${window.positionY}px)`}
           maxButton = "Restore"
+          resizingValue = false
+          draggingValue = true
         }
 
         return(
-
+        !window.closed &&
         <Rnd default={{
-            x: 10,
-            y: 0,
-            width: 600,
-            height: 600
+            x: window.positionX,
+            y: window.positionY,
+            width: window.width,
+            height: window.height
           }} 
 
+          enableResizing = {resizingValue}
+          disableDragging = {draggingValue}
+          
+          onDragStop={(e, data) => {
+              dispatch({type: 'setWindowPosition', payload: {name: window.name, positionX: data.x - 10, positionY: data.y, index}})
+            }
+          }
           onClick={() => dispatch({type: 'select_active', payload: {name: window.name, active: window.active, index}})}
 
           className={windowStyles.join(" ")}
           key={index}
           style={activeStyle}>
           <div className="window" style={maximizedStyle}>
-            <div className="title-bar" style={{height: '25px'}}>
+            <div className="title-bar" style={{height: '25px'}} onDoubleClick>
               <div className="title-bar-text d-flex align-items-center" style={{height: '100%'}}>
-                <img src="/src/assets/program_icons/tetris.png" className="taskbarIcon"/>&nbsp;
+                <img src={window.icon_url} className="h-100"/>&nbsp;
                 <span>{window.name}</span>
               </div>
               <div className="title-bar-controls h-100">
@@ -83,8 +104,9 @@ const Desktop = ({ fs, programs, windows, dispatch }) => {
                 <button 
                   className="titleBarButton"
                   aria-label={maxButton}
-                  onClick={() => 
+                  onClick={() => {
                     dispatch({type: 'toggle_maximize', payload: {name: window.name, maximized: window.maximized, index}})
+                    } 
                   }>
                 </button>
                 <button 
