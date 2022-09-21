@@ -10,7 +10,7 @@ const Searchbar = ({handleFormSubmit}) => {
  
     return (
         <>
-        <h2>This isn't youtube I swear</h2>
+        <h2 className="mt-2">YouTube '98</h2>
         <div>
             <form onSubmit={handleSubmit}>
                 <div>

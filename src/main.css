@@ -40,7 +40,13 @@ html, body, #root {
   min-width: 300px;
   min-height: 25px;
   height: 100%;
-  overflow: hidden;
+  overflow-y: scroll;
+  -ms-overflow-style: none;  
+  scrollbar-width: none;  
+} 
+
+.window::-webkit-scrollbar { 
+  display: none;  
 }
 
 .title-bar-controls button[aria-label=Minimize] {
@@ -292,8 +298,20 @@ html, body, #root {
   }
 }
 
-
 /******************** END HOVER *****************/
+
+/***************** VIDEO PLAYER *****************/
+
+.videoFrame {
+  height: 70vh;
+}
+
+.videoList {
+  white-space: normal;
+}
+
+/**************** END VIDEO PLAYER *****************/
+
 
 /***********  SIZING UTILITY CLASSES ************/
 

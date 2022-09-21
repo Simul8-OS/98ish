@@ -13,9 +13,8 @@ const VideoDetail = ({ video }) => {
     const videoSrc = `https://www.youtube.com/embed/${video.id.videoId}`;
     return (
       <div>
-        <div>
-          <iframe src={videoSrc} allowFullScreen title="Video player"/>
-        </div>
+        <iframe src={videoSrc} className="videoFrame w-100" allowFullScreen/>
+    
         <div>
           <h4>{video.snippet.title}</h4>
           <p>{video.snippet.description}</p>

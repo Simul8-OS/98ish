@@ -23,10 +23,18 @@ const VideoPlayer = () => {
     }
 
     return (
-      <div>
-          <SearchBar handleFormSubmit={handleSubmit}/>
-          <VideoDetail video={selectedVideo}/>
+      <div className="container-fluid">
+          <div className="row">
+            <div className="d-flex justify-content-center flex-column align-items-center">
+              <SearchBar handleFormSubmit={handleSubmit}/>
+            </div>
+            <div className="my-3">
+              <VideoDetail video={selectedVideo}/>
+            </div>
+          </div>
+          
           <VideoList handleVideoSelect={handleVideoSelect} videos={videos}/>
+         
       </div>
   )
 }
