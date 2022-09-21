@@ -43,6 +43,18 @@ html, body, #root {
   overflow: hidden;
 }
 
+.title-bar-controls button[aria-label=Minimize] {
+  background-position:bottom 3px left 4px;
+  background-repeat:no-repeat;
+  background-size: 10px 3px;
+}
+
+.title-bar-controls button[aria-label=Maximize], .title-bar-controls button[aria-label=Restore], .title-bar-controls button[aria-label=Close] {
+  background-position: center;
+  background-repeat:no-repeat;
+  background-size: 11px 11px;
+}
+
 /* .window-body {
   height: inherit;
 } */
