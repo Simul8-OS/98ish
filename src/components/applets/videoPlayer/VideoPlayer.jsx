@@ -23,7 +23,7 @@ const VideoPlayer = () => {
     }
 
     return (
-      <div className="container-fluid">
+      <div>
           <div className="row">
             <div className="d-flex justify-content-center flex-column align-items-center">
               <SearchBar handleFormSubmit={handleSubmit}/>
@@ -34,7 +34,6 @@ const VideoPlayer = () => {
           </div>
           
           <VideoList handleVideoSelect={handleVideoSelect} videos={videos}/>
-         
       </div>
   )
 }

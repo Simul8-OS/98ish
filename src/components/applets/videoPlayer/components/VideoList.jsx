@@ -7,7 +7,7 @@ const VideoList = ({videos , handleVideoSelect}) => {
         )
     });
 
-    return <div className="d-flex justify-content-start gap-5 flex-wrap videoList mb-3">{renderedVideos}</div>;
+    return <div className="container-fluid d-flex justify-content-start gap-5 flex-wrap videoList mb-3">{renderedVideos}</div>;
 };
 
 export default VideoList;

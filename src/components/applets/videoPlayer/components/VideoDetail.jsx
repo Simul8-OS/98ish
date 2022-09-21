@@ -1,6 +1,6 @@
 const VideoDetail = ({ video }) => {
     if (!video) {
-      return <div>
+      return <div className ="d-flex flex-column align-items-center">
          <h1>Enter search keyword to load...</h1>
          <br></br>
          <p style={{fontSize:'25px'}}>
@@ -15,7 +15,7 @@ const VideoDetail = ({ video }) => {
       <div>
         <iframe src={videoSrc} className="videoFrame w-100" allowFullScreen/>
     
-        <div>
+        <div className="container-fluid mt-1">
           <h4>{video.snippet.title}</h4>
           <p>{video.snippet.description}</p>
         </div>
