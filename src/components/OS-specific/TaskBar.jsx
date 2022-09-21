@@ -12,7 +12,6 @@ const TaskBar = ({ windows, dispatch }) => {
         {windows &&
           windows.map((window, index) => {
             let tabStyle
-
             window.active
               ? (tabStyle = {
                   boxShadow:
@@ -21,28 +20,27 @@ const TaskBar = ({ windows, dispatch }) => {
               : ""
 
             return (
-              <button
-                key={index}
-                style={tabStyle}
-                className="taskbarTab text-start ms-1 p-0"
-                onClick={() => {
-                  dispatch({
-                    type: "toggle_minimize_tab",
-                    payload: {
-                      name: window.name,
-                      minimized: window.minimized,
-                      active: window.active,
-                      index,
-                    },
-                  })
-                }}
-              >
-                <img
-                  src="/src/assets/program_icons/tetris.png"
-                  className="h-100 p-1"
-                />
-                &nbsp;{window.name}
-              </button>
+              !window.closed && (
+                <button
+                  key={index}
+                  style={tabStyle}
+                  className="taskbarTab text-start ms-1 p-0"
+                  onClick={() => {
+                    dispatch({
+                      type: "toggle_minimize_tab",
+                      payload: {
+                        name: window.name,
+                        minimized: window.minimized,
+                        active: window.active,
+                        index,
+                      },
+                    })
+                  }}
+                >
+                  <img src={window.icon_url} className="p-1 h-100" />
+                  &nbsp;<span>{window.name}</span>
+                </button>
+              )
             )
           })}
       </div>

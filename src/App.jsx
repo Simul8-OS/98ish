@@ -20,7 +20,13 @@ const reducer = (state, action) => {
       ]
 
     case "close_window":
-      return state.filter((_, idx) => idx !== action.payload.index)
+      return state.map((window, idx) => {
+        if (idx === action.payload.index) {
+          return { ...window, closed: true }
+        }
+        return window
+      })
+    // return state.filter((_, idx) => idx !== action.payload.index)
 
     case "toggle_minimize_tab":
       return state.map((window, idx) => {
@@ -60,6 +66,18 @@ const reducer = (state, action) => {
           else if (window.minimized == false) return { ...window, active: true }
         }
         return { ...window, active: false }
+      })
+
+    case "setWindowPosition":
+      return state.map((window, idx) => {
+        if (idx === action.payload.index) {
+          return {
+            ...window,
+            positionX: action.payload.positionX,
+            positionY: action.payload.positionY,
+          }
+        }
+        return window
       })
 
     default:

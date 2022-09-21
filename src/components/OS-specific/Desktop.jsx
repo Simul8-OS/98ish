@@ -23,37 +23,34 @@ const Desktop = ({ fs, programs, windows, dispatch }) => {
               className="p-0 desktopIcon"
               key={index}
             >
-              <a
-                href="#"
-                style={{
-                  color: "#000",
-                  textDecoration: "none",
+              <div
+                className="text-center desktopIcon"
+                onDoubleClick={() => {
+                  dispatch({
+                    type: "open_window",
+                    payload: {
+                      name: program.name,
+                      minimized: false,
+                      maximized: false,
+                      active: true,
+                      closed: false,
+                      width: program.width,
+                      height: program.height,
+                      positionX: 10,
+                      positionY: 0,
+                      icon_url: program.icon_url,
+                    },
+                  })
                 }}
-                onClick={(e) => e.preventDefault()}
               >
-                <div
-                  className="text-center desktopIcon"
-                  onDoubleClick={() => {
-                    dispatch({
-                      type: "open_window",
-                      payload: {
-                        name: program.name,
-                        minimized: false,
-                        maximized: false,
-                        active: true,
-                      },
-                    })
-                  }}
-                >
-                  <img
-                    src={program.image_url}
-                    style={{ width: "48px", height: "48px" }}
-                  />
-                  <label className="desktopIconLabel text-light">
-                    {program.name}
-                  </label>
-                </div>
-              </a>
+                <img
+                  src={program.image_url}
+                  style={{ width: "50px", height: "50px" }}
+                />
+                <label className="desktopIconLabel text-light">
+                  {program.name}
+                </label>
+              </div>
             </Rnd>
           )
         })}
@@ -65,8 +62,8 @@ const Desktop = ({ fs, programs, windows, dispatch }) => {
             let activeStyle
             let maximizedStyle
             let maxButton = "Maximize"
-
-            window.minimized ? windowStyles.push("d-none") : ""
+            let resizingValue = true
+            let draggingValue = false
 
             window.active
               ? (activeStyle = { zIndex: "111111" })
@@ -83,95 +80,120 @@ const Desktop = ({ fs, programs, windows, dispatch }) => {
               maxButton = "Restore"
             }
 
-            return (
-              <Rnd
-                default={{
-                  x: 10,
-                  y: 0,
-                  width: 600,
-                  height: 600,
-                }}
-                onClick={() =>
-                  dispatch({
-                    type: "select_active",
-                    payload: {
-                      name: window.name,
-                      active: window.active,
-                      index,
-                    },
-                  })
-                }
-                className={windowStyles.join(" ")}
-                key={index}
-                style={activeStyle}
-              >
-                <div className="window" style={maximizedStyle}>
-                  <div className="title-bar" style={{ height: "25px" }}>
-                    <div
-                      className="title-bar-text d-flex align-items-center"
-                      style={{ height: "100%" }}
-                    >
-                      <img
-                        src="/src/assets/program_icons/tetris.png"
-                        className="h-100"
-                      />
-                      &nbsp;
-                      <span>{window.name}</span>
-                    </div>
-                    <div className="title-bar-controls h-100">
-                      <button
-                        className="titleBarButton"
-                        aria-label="Minimize"
-                        onClick={() =>
-                          dispatch({
-                            type: "toggle_minimize",
-                            payload: {
-                              name: window.name,
-                              minimized: window.minimized,
-                              active: window.active,
-                              index,
-                            },
-                          })
-                        }
-                      ></button>
-                      <button
-                        className="titleBarButton"
-                        aria-label={maxButton}
-                        onClick={() =>
-                          dispatch({
-                            type: "toggle_maximize",
-                            payload: {
-                              name: window.name,
-                              maximized: window.maximized,
-                              index,
-                            },
-                          })
-                        }
-                      ></button>
-                      <button
-                        className="titleBarButton"
-                        aria-label="Close"
-                        onClick={() =>
-                          dispatch({
-                            type: "close_window",
-                            payload: { name: window.name, index },
-                          })
-                        }
-                      ></button>
-                    </div>
-                  </div>
+            if (window.maximized) {
+              maximizedStyle = {
+                height: "100vh",
+                width: "100.3vw",
+                transform: `translate(-${window.positionX}px, -${window.positionY}px)`,
+              }
+              maxButton = "Restore"
+              resizingValue = false
+              draggingValue = true
+            }
 
-                  {window.name == "Tetris" && (
-                    <Tetris gameData={gameData} setGameData={setGameData} />
-                  )}
-                  {window.name == "Hover" && <Hover />}
-                  {window.name == "My Computer" && (
-                    <FileExplorer fs={fs} dispatch={dispatch} />
-                  )}
-                  {window.name == "Notepad" && <Notepad file={window.file} />}
-                  {/* {window.name == "Minesweeper" && <Minesweeper />} */}
-                </div>
-              </Rnd>
+            return (
+              !window.closed && (
+                <Rnd
+                  default={{
+                    x: window.positionX,
+                    y: window.positionY,
+                    width: window.width,
+                    height: window.height,
+                  }}
+                  enableResizing={resizingValue}
+                  disableDragging={draggingValue}
+                  onDragStop={(e, data) => {
+                    dispatch({
+                      type: "setWindowPosition",
+                      payload: {
+                        name: window.name,
+                        positionX: data.x - 10,
+                        positionY: data.y,
+                        index,
+                      },
+                    })
+                  }}
+                  onClick={() =>
+                    dispatch({
+                      type: "select_active",
+                      payload: {
+                        name: window.name,
+                        active: window.active,
+                        index,
+                      },
+                    })
+                  }
+                  className={windowStyles.join(" ")}
+                  key={index}
+                  style={activeStyle}
+                >
+                  <div className="window" style={maximizedStyle}>
+                    <div
+                      className="title-bar"
+                      style={{ height: "25px" }}
+                      onDoubleClick
+                    >
+                      <div
+                        className="title-bar-text d-flex align-items-center"
+                        style={{ height: "100%" }}
+                      >
+                        <img src={window.icon_url} className="h-100" />
+                        &nbsp;
+                        <span>{window.name}</span>
+                      </div>
+                      <div className="title-bar-controls h-100">
+                        <button
+                          className="titleBarButton"
+                          aria-label="Minimize"
+                          onClick={() =>
+                            dispatch({
+                              type: "toggle_minimize",
+                              payload: {
+                                name: window.name,
+                                minimized: window.minimized,
+                                active: window.active,
+                                index,
+                              },
+                            })
+                          }
+                        ></button>
+                        <button
+                          className="titleBarButton"
+                          aria-label={maxButton}
+                          onClick={() => {
+                            dispatch({
+                              type: "toggle_maximize",
+                              payload: {
+                                name: window.name,
+                                maximized: window.maximized,
+                                index,
+                              },
+                            })
+                          }}
+                        ></button>
+                        <button
+                          className="titleBarButton"
+                          aria-label="Close"
+                          onClick={() =>
+                            dispatch({
+                              type: "close_window",
+                              payload: { name: window.name, index },
+                            })
+                          }
+                        ></button>
+                      </div>
+                    </div>
+
+                    {window.name == "Tetris" && <Tetris />}
+                    {window.name == "Hover" && <Hover />}
+                    {window.name == "My Computer" && (
+                      <FileExplorer fs={fs} dispatch={dispatch} />
+                    )}
+                    {window.name == "Notepad" && <Notepad file={window.file} />}
+                    {window.name == "Minesweeper" && <Minesweeper />}
+                  </div>
+                </Rnd>
+              )
             )
           })}
       </div>
