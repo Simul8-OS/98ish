@@ -67,6 +67,8 @@ const Desktop = ({ fs, programs, windows, dispatch }) => {
             let resizingValue = true
             let draggingValue = false
 
+            window.minimized ? windowStyles.push("d-none") : ""
+
             window.active
               ? (activeStyle = { zIndex: "111111" })
               : (activeStyle = {})
@@ -93,9 +95,9 @@ const Desktop = ({ fs, programs, windows, dispatch }) => {
           
           onDragStop={(e, data) => {
               dispatch({type: 'setWindowPosition', payload: {name: window.name, positionX: data.x - 10, positionY: data.y, index}})
+          }}
 
-
-            }
+          onClick={() => dispatch({type: 'select_active', payload: {name: window.name, active: window.active, index}})}
 
           className={windowStyles.join(" ")}
           key={index}
