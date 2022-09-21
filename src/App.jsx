@@ -5,51 +5,56 @@ import TaskBar from "./components/OS-specific/TaskBar"
 import Desktop from "./components/OS-specific/Desktop"
 import { fs } from "./utils/fs"
 import { programs } from "./utils/programs"
-import { actionIsDrop } from "./components/applets/tetris/utils/InputLogic"
+import ContextMenu from "./components/applets/fileExplorer/components/ContextMenu"
+import { contextMenus } from "./utils/contextMenus"
 
 const reducer = (state, action) => {
   switch (action.type) {
     case "open_window":
-      return [...state.map((window, idx) => {
-        return {...window, active: false}
-      }), {...action.payload}]
-
+      console.log(action.payload.name)
+      return [
+        ...state.map((window, idx) => {
+          return { ...window, active: false }
+        }),
+        { ...action.payload },
+      ]
 
     case "close_window":
       return state.map((window, idx) => {
-        if (idx === action.payload.index){
-          return {...window, closed: true}
+        if (idx === action.payload.index) {
+          return { ...window, closed: true }
         }
         return window
       })
-      // return state.filter((_, idx) => idx !== action.payload.index)
+    // return state.filter((_, idx) => idx !== action.payload.index)
 
     case "toggle_minimize_tab":
       return state.map((window, idx) => {
         if (idx === action.payload.index) {
           if (action.payload.minimized === true)
-            return {...window, minimized: !window.minimized, active: true}
-          else if (action.payload.minimized === false){
+            return { ...window, minimized: !window.minimized, active: true }
+          else if (action.payload.minimized === false) {
             if (action.payload.active === false)
-              return {...window, minimized: false, active: true}
+              return { ...window, minimized: false, active: true }
             else if (action.payload.active === true)
-              return {...window, minimized: !window.minimized, active: false}
-        }}
-        return {...window, active: false}
+              return { ...window, minimized: !window.minimized, active: false }
+          }
+        }
+        return { ...window, active: false }
       })
-    
+
     case "toggle_minimize":
       return state.map((window, idx) => {
         if (idx === action.payload.index) {
           return { ...window, minimized: !window.minimized, active: false }
         }
-        return {...window, active: false}
+        return { ...window, active: false }
       })
 
     case "toggle_maximize":
       return state.map((window, idx) => {
         if (idx === action.payload.index) {
-            return { ...window, maximized: !window.maximized }
+          return { ...window, maximized: !window.maximized }
         }
         return window
       })
@@ -57,18 +62,20 @@ const reducer = (state, action) => {
     case "select_active":
       return state.map((window, idx) => {
         if (idx === action.payload.index) {
-          if (window.minimized == true)
-            return {...window, active: false}
-          else if (window.minimized == false)
-            return {...window, active: true}
+          if (window.minimized == true) return { ...window, active: false }
+          else if (window.minimized == false) return { ...window, active: true }
         }
-        return {...window, active: false}
+        return { ...window, active: false }
       })
 
     case "setWindowPosition":
       return state.map((window, idx) => {
         if (idx === action.payload.index) {
-          return {...window, positionX: action.payload.positionX, positionY: action.payload.positionY}
+          return {
+            ...window,
+            positionX: action.payload.positionX,
+            positionY: action.payload.positionY,
+          }
         }
         return window
       })
@@ -88,17 +95,21 @@ const reducer = (state, action) => {
 }
 
 function App() {
+  const [gameData, setGameData] = useState({})
   const [windows, dispatch] = useReducer(reducer, [])
 
   return (
     <>
       <Canvas shadows camera={{ position: [-5, 2, 10], fov: 75 }}>
         <Html fullscreen>
+          {/* <ContextMenu menu={contextMenus.Desktop} /> */}
           <Desktop
             fs={fs}
             programs={programs}
             windows={windows}
             dispatch={dispatch}
+            gameData={gameData}
+            setGameData={setGameData}
           />
           <TaskBar windows={windows} dispatch={dispatch} />
         </Html>

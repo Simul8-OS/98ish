@@ -2,63 +2,74 @@ import React from "react"
 import App from "../../App"
 import { Rnd } from "react-rnd"
 import FileExplorer from "../applets/fileExplorer/FileExplorer"
-import TextEditor from "../applets/textEditor/TextEditor"
+import Notepad from "../applets/notepad/Notepad"
 import Tetris from "../../components/applets/tetris/Tetris"
 import Hover from "../../components/applets/hover/Hover"
 import VideoPlayer from "../../components/applets/videoPlayer/VideoPlayer"
+import Minesweeper from "../applets/minesweeper/Minesweeper"
 
 
 const Desktop = ({ fs, programs, windows, dispatch }) => {
   return (
     <div>
-    {programs && programs.map((program, index) => {
-      return (
-        <Rnd default={{
-          x: 10,
-          y: 10+ index * 100,
-          width: 50,
-          height: 50,
-        }}
-        className="p-0 desktopIcon"
-        key={index}>
-          <div className="text-center desktopIcon" onDoubleClick={()=> {
-            dispatch({type: 'open_window', payload: {
-                                              name: program.name, 
-                                              minimized: false, 
-                                              maximized: false, 
-                                              active: true, 
-                                              closed: false, 
-                                              width: program.width, 
-                                              height: program.height,
-                                              positionX: 10,
-                                              positionY: 0,
-                                              icon_url: program.icon_url}});
-            }}>
-
-            <img 
-              src={program.image_url} 
-              style={{width: '50px', height: '50px'}}
-            />
-            <label className="desktopIconLabel text-light">{program.name}</label>
-          </div>
-        </Rnd>
-      )})}
+      {programs &&
+        programs.map((program, index) => {
+          return (
+            <Rnd
+              default={{
+                x: 10,
+                y: 10 + index * 100,
+                width: 50,
+                height: 50,
+              }}
+              className="p-0 desktopIcon"
+              key={index}
+            >
+              <div
+                className="text-center desktopIcon"
+                onDoubleClick={() => {
+                  dispatch({
+                    type: "open_window",
+                    payload: {
+                      name: program.name,
+                      minimized: false,
+                      maximized: false,
+                      active: true,
+                      closed: false,
+                      width: program.width,
+                      height: program.height,
+                      positionX: 10,
+                      positionY: 0,
+                      icon_url: program.icon_url,
+                    },
+                  })
+                }}
+              >
+                <img
+                  src={program.image_url}
+                  style={{ width: "50px", height: "50px" }}
+                />
+                <label className="desktopIconLabel text-light">
+                  {program.name}
+                </label>
+              </div>
+            </Rnd>
+          )
+        })}
 
       <div className="row desktop-row d-flex justify-content-center align-items-center pb-5">
-      
-      
-      {windows && windows.map((window, index) => {
+        {windows &&
+          windows.map((window, index) => {
+            let windowStyles = ["p-0"]
+            let activeStyle
+            let maximizedStyle
+            let maxButton = "Maximize"
+            let resizingValue = true
+            let draggingValue = false
 
-        let windowStyles = ["p-0"];
-        let activeStyle;
-        let maximizedStyle;
-        let maxButton = "Maximize"
-        let resizingValue = true
-        let draggingValue = false
-
-        window.minimized ? windowStyles.push("d-none") : ""
-
-        window.active ? activeStyle = {zIndex: '111111'} : activeStyle = {}
+            window.active
+              ? (activeStyle = { zIndex: "111111" })
+              : (activeStyle = {})
 
         if (window.maximized){
           maximizedStyle = {height: 'calc(100vh - 35px)', width: 'calc(100vw + 4px)', transform: `translate(-${window.positionX}px, -${window.positionY}px)`}
@@ -82,9 +93,9 @@ const Desktop = ({ fs, programs, windows, dispatch }) => {
           
           onDragStop={(e, data) => {
               dispatch({type: 'setWindowPosition', payload: {name: window.name, positionX: data.x - 10, positionY: data.y, index}})
+
+
             }
-          }
-          onClick={() => dispatch({type: 'select_active', payload: {name: window.name, active: window.active, index}})}
 
           className={windowStyles.join(" ")}
           key={index}
@@ -124,12 +135,14 @@ const Desktop = ({ fs, programs, windows, dispatch }) => {
             {window.name == "Tetris" && <Tetris />}
             {window.name == "Hover" && <Hover />}
             {window.name == "My Computer" && <FileExplorer fs={fs} dispatch={dispatch} />}
-            {window.name == "Notepad" && (<TextEditor file={window.file} />)}
+            {window.name == "Notepad" && <Notepad file={window.file} />}
+            {window.name == "Minesweeper" && <Minesweeper />}
             {window.name == "Video Player" && <VideoPlayer />}
           </div>
         </Rnd>
         )
         })}
+
       </div>
     </div>
   )

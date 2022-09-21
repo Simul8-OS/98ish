@@ -9,8 +9,15 @@ const TaskBar = ({ windows, dispatch }) => {
         <StartMenu windows={windows} dispatch={dispatch} />
       </div>
       <div className="col taskbarRight">
-        {windows && windows.map((window, index) => {
-        let tabStyle;
+        {windows &&
+          windows.map((window, index) => {
+            let tabStyle
+            window.active
+              ? (tabStyle = {
+                  boxShadow:
+                    "inset 1px 1px #0a0a0a, inset -1px -1px #fff, inset 2px 2px grey, inset -2px -2px #dfdfdf",
+                })
+              : ""
 
         window.active ? 
         tabStyle = {boxShadow: 'inset 1px 1px #0a0a0a, inset -1px -1px #fff, inset 2px 2px grey, inset -2px -2px #dfdfdf'} : ""
@@ -35,7 +42,9 @@ const TaskBar = ({ windows, dispatch }) => {
       </div>
       <div className="col-auto p-0">
         {/* <DateAndTime /> */}
+
       </div>
+      <div className="col-auto p-0">{/* <DateAndTime /> */}</div>
     </div>
   )
 }
