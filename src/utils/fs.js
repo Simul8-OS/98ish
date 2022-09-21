@@ -493,18 +493,31 @@ fs.goBack()
 fs.createDirectory("Programs", "folder")
 fs.createDirectory("Bookmarks", "bookmarks")
 fs.openDirectory("Bookmarks")
-fs.createFile("Tim Tang", "internet")
 fs.createFile("AOL", "internet")
 fs.createFile("Yahoo", "internet")
-fs.createFile("AskJeeves", "internet")
+fs.createFile("Tim Tang", "internet")
+fs.createFile("Ask Jeeves", "internet")
 fs.createFile("Geocities", "internet")
 fs.createFile("eBay", "internet")
 fs.createFile("IMDb", "internet")
+fs.createFile("Chit Chat", "internet")
+fs.createFile("ReDirector", "internet")
 fs.goBack()
 fs.createFile("Hello World", "text", "Hello World!")
-fs.createFile("README", "note", "some stuff")
+fs.createFile(
+  "README",
+  "note",
+  `98ish:
+
+A simulated operating system in a nostalgic style.
+by Brandon Taylor and Cameron De Robertis.
+
+Tech Stack:
+- React,
+- Bootstrap,
+- 98.css`
+)
 fs.createFile("Cover Letter", "text")
-fs.printCurrentDirectory()
 
 // fs.goBack()
 // fs.goBackToDirectory("one")

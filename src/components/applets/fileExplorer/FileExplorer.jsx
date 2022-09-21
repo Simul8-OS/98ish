@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react"
-import ContextMenu from "./components/ContextMenu"
 import { imageMapper } from "../../../utils/imageMapper"
-import { context } from "@react-three/fiber"
+import ContextMenu from "./components/ContextMenu"
+import { contextMenus } from "../../../utils/contextMenus"
+import { hyperlinks } from "../../../utils/hyperlinks"
 
 const FileExplorer = ({ fs, dispatch }) => {
   const [dir, setDir] = useState(fs.currentDirectory.content)
@@ -9,17 +10,6 @@ const FileExplorer = ({ fs, dispatch }) => {
     `${fs.currentDirectoryPath.join("\\")}\\`.slice(5)
   )
   const [folderName, setFolderName] = useState("New Folder")
-
-  const contextMenu = (
-    <div>
-      <ul>
-        <li>Copy</li>
-        <li>Paste</li>
-        <li>Rename</li>
-        <li>New</li>
-      </ul>
-    </div>
-  )
 
   const getPath = () => {
     return `${fs.currentDirectoryPath.join("\\")}\\`.slice(5)
@@ -69,8 +59,10 @@ const FileExplorer = ({ fs, dispatch }) => {
           },
         })
         return
+      case "internet":
+        window.open(hyperlinks[item.name])
       default:
-        throw new Error("Uh oh! type doesn't exist")
+        return
     }
   }
 
@@ -86,10 +78,13 @@ const FileExplorer = ({ fs, dispatch }) => {
   }
 
   return (
-    <div className="mb-0 position-static h-100">
-      <div className="px-1">
-        <div className="field-row row mb-2">
-          <div className="col-auto pe-1 d-flex align-items-center justify-content-center">
+    <div
+      className="mb-0 justify-content-center align-items-center"
+      style={{ height: "calc(100% - 25px)" }}
+    >
+      <div className="p-1">
+        <div className="field-row row">
+          <div className="col-auto pe-1 d-flex align-items-center justify-content-center h-100">
             <img
               className=""
               src={"/src/assets/" + imageMapper.small_folder_up}
@@ -127,42 +122,57 @@ const FileExplorer = ({ fs, dispatch }) => {
         </div>
       </div>
       <div
-        className="bg-light row row-cols-6 m-0 align-content-start pt-3 h-100 overflow-scroll"
-        style={{ minHeight: 300, maxHeight: 300 }}
+        className="bg-light overflow-scroll"
+        style={{ height: "calc(100% - 32px)" }}
       >
-        <ContextMenu menu={contextMenu} />
-        {dir.map((item, idx) => {
-          return (
-            <div key={idx} className="col p-0 text-center">
-              <img
-                src={"/src/assets/" + imageMapper[item.type]}
-                alt=""
-                onDoubleClick={(e) => handleDoubleClick(e, item)}
-              />
-              {item.name === "un-named directory" ? (
-                <form
-                  onSubmit={(e) => {
-                    e.preventDefault()
-                    fs.renameItem("un-named directory", folderName)
+        <div className="row row-cols-6 m-0 align-content-start pt-3">
+          {dir.map((item, idx) => {
+            return (
+              <div key={idx} className="col p-0 text-center">
+                <a
+                  href="#"
+                  style={{
+                    color: "#000",
+                    textDecoration: "none",
                   }}
+                  onClick={(e) => e.preventDefault()}
                 >
-                  <input
-                    className="text-center"
-                    style={{ boxShadow: "none", backgroundColor: "#F8F9FA" }}
-                    type="text"
-                    value={folderName}
-                    autoFocus
-                    onFocus={(e) => e.target.select()}
-                    onChange={(e) => setFolderName(e.target.value)}
-                  />
-                  <input type="submit" style={{ display: "none" }} />
-                </form>
-              ) : (
-                <p>{item.name}</p>
-              )}
-            </div>
-          )
-        })}
+                  <div>
+                    <img
+                      src={"/src/assets/" + imageMapper[item.type]}
+                      alt=""
+                      onDoubleClick={(e) => handleDoubleClick(e, item)}
+                    />
+                    {item.name === "un-named directory" ? (
+                      <form
+                        onSubmit={(e) => {
+                          e.preventDefault()
+                          fs.renameItem("un-named directory", folderName)
+                        }}
+                      >
+                        <input
+                          className="text-center"
+                          style={{
+                            boxShadow: "none",
+                            backgroundColor: "#F8F9FA",
+                          }}
+                          type="text"
+                          value={folderName}
+                          autoFocus
+                          onFocus={(e) => e.target.select()}
+                          onChange={(e) => setFolderName(e.target.value)}
+                        />
+                        <input type="submit" style={{ display: "none" }} />
+                      </form>
+                    ) : (
+                      <p>{item.name}</p>
+                    )}
+                  </div>
+                </a>
+              </div>
+            )
+          })}
+        </div>
       </div>
     </div>
   )
