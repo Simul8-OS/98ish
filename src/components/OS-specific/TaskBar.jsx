@@ -23,7 +23,13 @@ const TaskBar = ({ windows, dispatch }) => {
             className="taskbarTab text-start ms-1 p-0"
             onClick={() => {
               dispatch({type: 'toggle_minimize_tab', payload: {name: window.name, minimized: window.minimized, active: window.active, index}});
-            }}><img src={window.icon_url} className="p-1 h-100"/>&nbsp;<span>{window.name}</span></button>
+            }}
+
+            // onDoubleClick={() => {
+            //   dispatch({type: 'reset_position', payload: {name: window.name, positionX: window.positionX, positionY: window.positionY, index}})
+            // }}
+
+            ><img src={window.icon_url} className="p-1 h-100"/>&nbsp;<span>{window.name}</span></button>
         )})
         }
       </div>

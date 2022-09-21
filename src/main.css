@@ -96,7 +96,7 @@ html, body, #root {
   text-align: center;
   color: white;
   background-color: purple;
-  height: 100%; 
+  height: calc(100% - 25px);
   overflow: hidden;
 }
 
@@ -218,7 +218,7 @@ html, body, #root {
   overflow: hidden;
   background: black;
   color: white;
-  height: 100%;
+  height: calc(100% - 25px);
 }
 
 .hoverText {

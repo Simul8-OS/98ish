@@ -5,6 +5,7 @@ import FileExplorer from "../applets/fileExplorer/FileExplorer"
 import TextEditor from "../applets/textEditor/TextEditor"
 import Tetris from "../../components/applets/tetris/Tetris"
 import Hover from "../../components/applets/hover/Hover"
+import VideoPlayer from "../../components/applets/videoPlayer/VideoPlayer"
 
 
 const Desktop = ({ fs, programs, windows, dispatch }) => {
@@ -60,7 +61,7 @@ const Desktop = ({ fs, programs, windows, dispatch }) => {
         window.active ? activeStyle = {zIndex: '111111'} : activeStyle = {}
 
         if (window.maximized){
-          maximizedStyle = {height: '100vh', width: '100.3vw', transform: `translate(-${window.positionX}px, -${window.positionY}px)`}
+          maximizedStyle = {height: 'calc(100vh - 35px)', width: 'calc(100vw + 4px)', transform: `translate(-${window.positionX}px, -${window.positionY}px)`}
           maxButton = "Restore"
           resizingValue = false
           draggingValue = true
@@ -77,6 +78,7 @@ const Desktop = ({ fs, programs, windows, dispatch }) => {
 
           enableResizing = {resizingValue}
           disableDragging = {draggingValue}
+          bounds = 'window'
           
           onDragStop={(e, data) => {
               dispatch({type: 'setWindowPosition', payload: {name: window.name, positionX: data.x - 10, positionY: data.y, index}})
@@ -88,7 +90,7 @@ const Desktop = ({ fs, programs, windows, dispatch }) => {
           key={index}
           style={activeStyle}>
           <div className="window" style={maximizedStyle}>
-            <div className="title-bar" style={{height: '25px'}} onDoubleClick>
+            <div className="title-bar" style={{height: '25px'}} onDoubleClick={() => dispatch({type: 'toggle_maximize', payload: {name: window.name, maximized: window.maximized, index}})}>
               <div className="title-bar-text d-flex align-items-center" style={{height: '100%'}}>
                 <img src={window.icon_url} className="h-100"/>&nbsp;
                 <span>{window.name}</span>
@@ -123,6 +125,7 @@ const Desktop = ({ fs, programs, windows, dispatch }) => {
             {window.name == "Hover" && <Hover />}
             {window.name == "My Computer" && <FileExplorer fs={fs} dispatch={dispatch} />}
             {window.name == "Notepad" && (<TextEditor file={window.file} />)}
+            {window.name == "Video Player" && <VideoPlayer />}
           </div>
         </Rnd>
         )

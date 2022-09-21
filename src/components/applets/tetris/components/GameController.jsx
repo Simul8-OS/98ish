@@ -36,7 +36,6 @@ const GameController = ({
     } else if (action === Action.Quit) {
       setGameOver(true);
     } else {
-      if (actionIsDrop(action)) pauseDropTime();
       if (!dropTime) {
         return;
       }

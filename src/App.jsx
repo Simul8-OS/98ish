@@ -73,6 +73,15 @@ const reducer = (state, action) => {
         return window
       })
 
+    // case "reset_position":
+    //   return state.map((window, idx) => {
+    //     if (idx === action.payload.index) {
+    //       alert("hit")
+    //       return {...window, reset: true}
+    //     }
+    //     return window
+    //   })
+
     default:
       return state
   }
