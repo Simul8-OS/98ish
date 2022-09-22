@@ -1,4 +1,4 @@
-const VideoDetail = ({ video }) => {
+const VideoDetail = ({ video, setShare, socket }) => {
     if (!video) {
       return <div className ="d-flex flex-column align-items-center">
          <h1>Enter search keyword to load...</h1>
@@ -17,8 +17,17 @@ const VideoDetail = ({ video }) => {
     
         <div className="container-fluid mt-1">
           <h4>{video.snippet.title}</h4>
-          <p>{video.snippet.description}</p>
+
+          
+          <p className="lead">{video.snippet.description}</p>
+          <button
+            className="btn btn-success mt-3"
+            onClick={() => socket.emit("chat_message", {name: 'Brandon', content: videoSrc, type: 'share'})}
+          >
+          Share Video!
+          </button>
         </div>
+        
       </div>
     );
   };
