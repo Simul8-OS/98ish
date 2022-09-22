@@ -10,6 +10,11 @@ html, body, #root {
 }
 
 /************ DESKTOP *************/
+
+.desktop {
+  background-image: 'https://i.pinimg.com/originals/53/03/29/5303299916be50ba24001fec4c0bda5f.jpg';
+}
+
 .desktop-row {
   height: 100vh;
 }
@@ -328,6 +333,11 @@ hr.sm {
 
 .chatContainer {
   overflow-y: scroll;
+}
+
+.highlightedLink:hover {
+  text-decoration: underline;
+  cursor: pointer;
 }
 
 /***************** END CHAT APP *****************/

@@ -67,10 +67,6 @@ const TaskBar = ({
                       },
                     })
                   }}
-
-                  // onDoubleClick={() => {
-                  //   dispatch({type: 'reset_position', payload: {name: window.name, positionX: window.positionX, positionY: window.positionY, index}})
-                  // }}
                 >
                   <img src={window.icon_url} className="p-1 h-100" />
                   &nbsp;<span>{window.name}</span>
@@ -79,8 +75,7 @@ const TaskBar = ({
             )
           })}
       </div>
-      <div className="col-auto p-0">{/* <DateAndTime /> */}</div>
-      <div className="col-auto p-0">{/* <DateAndTime /> */}</div>
+      <div className="col-auto p-0"><DateAndTime /></div>
     </div>
   )
 }
