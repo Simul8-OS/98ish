@@ -11,4 +11,6 @@ export const imageMapper = {
   executable: "executable.png",
   dos: "dos.png",
   internet: "internet_explorer.png",
+  programs: "programs.png",
+  README: "README.png",
 }
