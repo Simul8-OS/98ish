@@ -56,6 +56,7 @@ const StartMenu = ({ dispatch }) => {
     listStyle: "none",
     width: "max-content",
     bottom: "275px",
+    zIndex: '99999999'
   }
 
   const itemStyle = {

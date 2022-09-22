@@ -30,6 +30,7 @@ const Desktop = ({ fs, programs, windows, dispatch }) => {
               }}
               className="p-0 desktopIcon"
               key={index}
+              enableResizing= 'false'
             >
               <div
                 className="text-center desktopIcon"
@@ -54,6 +55,7 @@ const Desktop = ({ fs, programs, windows, dispatch }) => {
                 <img
                   src={program.image_url}
                   style={{ width: "50px", height: "50px" }}
+                  draggable="false" dragstart="false;" class="unselectable"
                 />
                 <label className="desktopIconLabel text-light">
                   {program.name}
@@ -203,7 +205,7 @@ const Desktop = ({ fs, programs, windows, dispatch }) => {
                   </div>
 
             </Rnd>
-        )
+          ))
         })}
       </div>
     </div>

@@ -13,7 +13,7 @@ const TaskBar = ({
     borderTop: startMenuVisible ? "3px solid #333" : "3px solid #eee",
     borderLeft: startMenuVisible ? "3px solid #333" : "3px solid #eee",
     borderRight: startMenuVisible ? "3px solid #eee" : "3px solid #333",
-    borderBottom: startMenuVisible ? "3px solid #eee" : "3px solid #333",
+    borderBottom: startMenuVisible ? "3px solid #eee" : "3px solid #333"
   }
   return (
     <div className="taskbar row position-absolute bottom-0 w-100 align-items-center m-0">
