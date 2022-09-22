@@ -53,9 +53,9 @@ const Desktop = ({ fs, programs, windows, dispatch }) => {
                 <img
                   src={program.image_url}
                   style={{ width: "50px", height: "50px" }}
-                  draggable="false"
-                  dragstart="false;"
-                  class="unselectable"
+
+                  draggable="false" dragstart="false"
+
                 />
                 <label className="desktopIconLabel text-light">
                   {program.name}
@@ -201,6 +201,7 @@ const Desktop = ({ fs, programs, windows, dispatch }) => {
                     )}
                     {window.name == "Notepad" && <Notepad file={window.file} />}
                     {window.name == "Minesweeper" && <Minesweeper />}
+
                     {window.name == "Video Player" && (
                       <VideoPlayer socket={socket} />
                     )}
@@ -219,6 +220,7 @@ const Desktop = ({ fs, programs, windows, dispatch }) => {
                         allowFullScreen
                       />
                     )}
+                    
                   </div>
                 </Rnd>
               )

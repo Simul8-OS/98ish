@@ -1,4 +1,4 @@
-import {useState} from "react"
+import {useState, useRef, useEffect} from "react"
 import youtube from './apis/youtube'
 import SearchBar from './components/SearchBar';
 import VideoList from './components/VideoList';
@@ -7,6 +7,7 @@ import VideoDetail from './components/VideoDetail';
 const VideoPlayer = ({setShare, socket}) => {
     const [videos, setVideos] = useState([])
     const [selectedVideo, setSelectedVideo] = useState(null)
+
 
     const handleSubmit = async (termFromSearchBar) => {
       const response = await youtube.get('/search', {
