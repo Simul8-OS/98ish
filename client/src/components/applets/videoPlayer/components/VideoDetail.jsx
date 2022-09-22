@@ -18,14 +18,19 @@ const VideoDetail = ({ video, setShare, socket }) => {
         <div className="container-fluid mt-1">
           <h4>{video.snippet.title}</h4>
 
-          
-          <p className="lead">{video.snippet.description}</p>
-          <button
-            className="btn btn-success mt-3"
-            onClick={() => socket.emit("chat_message", {name: 'Brandon', content: videoSrc, type: 'share'})}
-          >
-          Share Video!
-          </button>
+          <div className="row">
+            <div className="col-9">
+              <p className="lead">{video.snippet.description}</p>
+            </div>
+            <div className="col-3 text-center">
+              <button
+                className="btn btn-success mt-3"
+                onClick={() => socket.emit("chat_message", {name: 'Brandon', content: videoSrc, type: 'share'})}
+              >
+              Share Video!
+              </button>
+            </div>
+          </div>
         </div>
         
       </div>
