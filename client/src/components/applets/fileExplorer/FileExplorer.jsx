@@ -124,7 +124,7 @@ const FileExplorer = ({ fs, dispatch }) => {
           <div className="col-auto pe-1 d-flex align-items-center justify-content-center h-100">
             <img
               className=""
-              src={"/src/assets/" + imageMapper.small_folder_up}
+              src={"/assets/" + imageMapper.small_folder_up}
               alt=""
               onClick={() => goUp()}
             ></img>
@@ -177,7 +177,7 @@ const FileExplorer = ({ fs, dispatch }) => {
                 >
                   <div>
                     <img
-                      src={"/src/assets/" + imageMapper[item.type]}
+                      src={"/assets/" + imageMapper[item.type]}
                       alt=""
                       onDoubleClick={(e) => handleDoubleClick(e, item)}
                     />

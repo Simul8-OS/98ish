@@ -1,4 +1,4 @@
-import React, {useState} from "react"
+import React, { useState } from "react"
 import App from "../../App"
 import { Rnd } from "react-rnd"
 import FileExplorer from "../applets/fileExplorer/FileExplorer"
@@ -11,10 +11,8 @@ import ChatApp from "../applets/chatApp/ChatApp"
 import io from "socket.io-client"
 
 const Desktop = ({ fs, programs, windows, dispatch }) => {
-
   const [socket] = useState(() => io(":8000"))
-  const [share, setShare] = useState('')
-
+  const [share, setShare] = useState("")
 
   return (
     <div>
@@ -194,17 +192,34 @@ const Desktop = ({ fs, programs, windows, dispatch }) => {
                     </div>
                     {window.name == "Tetris" && <Tetris />}
                     {window.name == "Hover" && <Hover />}
-                    {window.name == "My Computer" && <FileExplorer fs={fs} dispatch={dispatch} />}
+                    {window.name == "My Computer" && (
+                      <FileExplorer fs={fs} dispatch={dispatch} />
+                    )}
                     {window.name == "Notepad" && <Notepad file={window.file} />}
                     {window.name == "Minesweeper" && <Minesweeper />}
-                    {window.name == "Video Player" && <VideoPlayer socket={socket}/>}
-                    {window.name == "Chat App" && <ChatApp dispatch={dispatch} socket={socket} setShare={setShare}/>}
-                    {window.name == "View Video" && <iframe src={share} className="w-100" style={{height: 'calc(100% - 25px'}} allowFullScreen/>}
+                    {window.name == "Video Player" && (
+                      <VideoPlayer socket={socket} />
+                    )}
+                    {window.name == "Chat App" && (
+                      <ChatApp
+                        dispatch={dispatch}
+                        socket={socket}
+                        setShare={setShare}
+                      />
+                    )}
+                    {window.name == "View Video" && (
+                      <iframe
+                        src={share}
+                        className="w-100"
+                        style={{ height: "calc(100% - 25px" }}
+                        allowFullScreen
+                      />
+                    )}
                   </div>
-
-            </Rnd>
-        )
-        })}
+                </Rnd>
+              )
+            )
+          })}
       </div>
     </div>
   )
