@@ -4,7 +4,7 @@ import SearchBar from './components/SearchBar';
 import VideoList from './components/VideoList';
 import VideoDetail from './components/VideoDetail';
 
-const VideoPlayer = () => {
+const VideoPlayer = ({setShare, socket}) => {
     const [videos, setVideos] = useState([])
     const [selectedVideo, setSelectedVideo] = useState(null)
 
@@ -23,13 +23,13 @@ const VideoPlayer = () => {
     }
 
     return (
-      <div style={{height: 'calc(100% - 25px)'}}>
+      <div style={{height: 'calc(100% - 25px)', overflowY: 'scroll', overflowX: 'hidden'}}>
           <div className="row">
             <div className="d-flex justify-content-center flex-column align-items-center">
               <SearchBar handleFormSubmit={handleSubmit}/>
             </div>
             <div className="my-3">
-              <VideoDetail video={selectedVideo}/>
+              <VideoDetail video={selectedVideo} setShare={setShare} socket={socket}/>
             </div>
           </div>
           
