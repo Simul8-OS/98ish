@@ -40,7 +40,7 @@ html, body, #root {
   min-width: 300px;
   min-height: 25px;
   height: 100%;
-  overflow-y: scroll;
+  overflow-y: hidden;
   -ms-overflow-style: none;  
   scrollbar-width: none;  
 } 
