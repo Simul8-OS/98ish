@@ -3,13 +3,17 @@ import { imageMapper } from "../../../utils/imageMapper"
 import ContextMenu from "./components/ContextMenu"
 import { contextMenus } from "../../../utils/contextMenus"
 import { hyperlinks } from "../../../utils/hyperlinks"
+import InputDialog from "./components/InputDialog"
 
 const FileExplorer = ({ fs, dispatch }) => {
   const [dir, setDir] = useState(fs.currentDirectory.content)
   const [address, setAddress] = useState(
     `${fs.currentDirectoryPath.join("\\")}\\`.slice(5)
   )
+  const [newFolder, setNewFolder] = useState(false)
   const [folderName, setFolderName] = useState("New Folder")
+  const [newFile, setNewFile] = useState(false)
+  const [fileName, setFileName] = useState("New File")
 
   const getPath = () => {
     return `${fs.currentDirectoryPath.join("\\")}\\`.slice(5)
@@ -45,6 +49,12 @@ const FileExplorer = ({ fs, dispatch }) => {
             file: item,
             minimized: false,
             maximized: false,
+            active: true,
+            closed: false,
+            width: 400,
+            height: 400,
+            positionX: 10,
+            positionY: 0,
           },
         })
         return
@@ -56,6 +66,12 @@ const FileExplorer = ({ fs, dispatch }) => {
             file: item,
             minimized: false,
             maximized: false,
+            active: true,
+            closed: false,
+            width: 600,
+            height: 400,
+            positionX: 10,
+            positionY: 0,
           },
         })
         return
@@ -67,8 +83,11 @@ const FileExplorer = ({ fs, dispatch }) => {
   }
 
   const createFolder = () => {
-    fs.createDirectory("", "folder")
-    setDir(fs.currentDirectory.content)
+    setNewFolder(true)
+  }
+
+  const createFile = () => {
+    setNewFile(true)
   }
 
   const goUp = () => {
@@ -82,6 +101,24 @@ const FileExplorer = ({ fs, dispatch }) => {
       className="mb-0 justify-content-center align-items-center"
       style={{ height: "calc(100% - 25px)" }}
     >
+      {newFolder && (
+        <InputDialog
+          title={"Creating a folder in this folder"}
+          placeholder={folderName}
+          description={"Give a name to this folder"}
+          setDir={setDir}
+          setNewFolder={setNewFolder}
+        />
+      )}
+      {newFile && (
+        <InputDialog
+          title={"Creating a folder in this file"}
+          placeholder={fileName}
+          description={"Give a name to this file"}
+          setDir={setDir}
+          setNewFile={setNewFile}
+        />
+      )}
       <div className="p-1">
         <div className="field-row row">
           <div className="col-auto pe-1 d-flex align-items-center justify-content-center h-100">
@@ -101,9 +138,10 @@ const FileExplorer = ({ fs, dispatch }) => {
             />
           </form>
           <div className="col-auto px-0">
-            <button id="create-folder-btn" onClick={() => createFolder()}>
-              Create Folder
-            </button>
+            <button onClick={() => createFolder()}>Create Folder</button>
+          </div>
+          <div className="col-auto px-0">
+            <button onClick={() => createFile()}>Create File</button>
           </div>
           <div className="col-auto ps-0">
             <button>
@@ -143,30 +181,7 @@ const FileExplorer = ({ fs, dispatch }) => {
                       alt=""
                       onDoubleClick={(e) => handleDoubleClick(e, item)}
                     />
-                    {item.name === "un-named directory" ? (
-                      <form
-                        onSubmit={(e) => {
-                          e.preventDefault()
-                          fs.renameItem("un-named directory", folderName)
-                        }}
-                      >
-                        <input
-                          className="text-center"
-                          style={{
-                            boxShadow: "none",
-                            backgroundColor: "#F8F9FA",
-                          }}
-                          type="text"
-                          value={folderName}
-                          autoFocus
-                          onFocus={(e) => e.target.select()}
-                          onChange={(e) => setFolderName(e.target.value)}
-                        />
-                        <input type="submit" style={{ display: "none" }} />
-                      </form>
-                    ) : (
-                      <p>{item.name}</p>
-                    )}
+                    <p>{item.name}</p>
                   </div>
                 </a>
               </div>

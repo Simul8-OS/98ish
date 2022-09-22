@@ -7,7 +7,6 @@ const Notepad = ({ file }) => {
   const [fileName, setFileName] = useState(file ? file.name : "")
   const [isNewFile, setIsNewFile] = useState(false)
   const [currentFile, setCurrentFile] = useState(file ? file : {})
-  console.log(currentFile)
 
   const newFile = () => {
     setText("")
@@ -21,11 +20,16 @@ const Notepad = ({ file }) => {
     console.log("attempting to save file...")
     if (file && !isNewFile) {
       console.log("there is a file")
-      fs.getItem(currentFile.name).textContent = text
-      fs.getItem(currentFile.name).name = fileName
+      if (fs.getItem(currentFile.name).textContent !== text) {
+        fs.getItem(currentFile.name).textContent = text
+      }
+      if (fs.getItem(currentFile.name).name !== fileName) {
+        fs.getItem(currentFile.name).name = fileName
+      }
     } else {
       fs.createFile(fileName, "text", text)
     }
+    // setCurrentFile(fs.getItem(fileName))
   }
 
   return (

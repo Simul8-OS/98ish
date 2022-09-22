@@ -10,10 +10,18 @@ const TextEditor = ({ currentFile, text, setText }) => {
       </div>
       <textarea
         style={{ width: "100%" }}
-        rows="31"
+        rows="19"
         value={text}
         onChange={(e) => setText(e.target.value)}
       ></textarea>
+      {/* <p>{text}</p>
+      <input
+        type="text"
+        className="d-none"
+        value={text}
+        onChange={(e) => setText(e.target.value)}
+        autoFocus
+      /> */}
     </div>
   )
 }
