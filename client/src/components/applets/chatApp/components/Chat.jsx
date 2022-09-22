@@ -87,8 +87,81 @@ const Chat = ({ name, setShare, dispatch, socket }) => {
                           }
                     }
                   >
+                  
+                    <div
+                      className={
+                        msg.name == name
+                          ? "mb-3 rounded-3 col-6 px-3 p-1 justify-self-end"
+                          : "mb-3 rounded-3 col-6 px-3 p-1 justify-self-start"
+                      }
+                      style={
+                        msg.name == name
+                          ? {
+                              backgroundColor: "dodgerblue",
+                              color: "white",
+                            }
+                          : {
+                              backgroundColor: "#eee",
+                            }
+                      }
+                    >
+                      <p 
+                        className={
+                          msg.type =='share'
+                            ? "mb-0 lead highlightedLink" 
+                            : "mb-0 lead"
+                        }
+                        
+                        style={
+                          msg.type=='share' 
+                            ? {
+                                color: 'blue'
+                              }
+                            :
+                              {}
+                        }
+                      >{msg.content}</p>
+                      <p className="mb-0 small text-end lead">-{msg.name}</p>
+                    </div>
+                  </div>
+                )
+              })}
+              <div ref={bottom}></div>
+            </div>
+            <div
+              style={{
+                backgroundColor: "grey",
+              }}
+              className="row position-sticky bottom-0 h-100"
+            >
+              <form className="col">
+                <div className="row justify-content-between p-3 align-items-center">
+                  <div className="col-10">
+                    <input
+                      className="form-control-lg w-100"
+                      type="text"
+                      placeholder="message"
+                      value={msg.content}
+                      onChange={(e) =>
+                        setMsg({
+                          name: name,
+                          content: e.target.value,
+                          type: "chat"
+                        })
+                      }
+                    />
+                  </div>
+                  <div className="col-2">
+                    <button
+                      className="btn btn-primary w-100"
+                      onClick={(e) => sendMessage(e)}
+                    >
+                      Send
+                    </button>
+
                     <p className="mb-0 lead">{msg.content}</p>
                     <p className="mb-0 small text-end lead">-{msg.name}</p>
+
                   </div>
                 </div>
               )
