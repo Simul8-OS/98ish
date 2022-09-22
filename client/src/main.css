@@ -90,8 +90,18 @@ html, body, #root {
 
 /************* START MENU *************/
 
-.dropup, .dropdown-toggle {
-  height: 100%;
+.sm-link {
+  padding: 0.5rem;
+}
+
+.sm-link:hover {
+  background-color:rgba(0, 0, 0, 0.2);
+}
+
+hr.sm {
+  color: #555;
+  opacity: 1;
+  box-shadow: 0 1px 0 #eee;
 }
 
 /************ END START MENU **********/

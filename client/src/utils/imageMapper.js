@@ -7,7 +7,6 @@ export const imageMapper = {
   text: "text_file.png",
   note: "note.png",
   drive: "hard_drive.png",
-  computer: "computer_explorer.png",
   executable: "executable.png",
   dos: "dos.png",
   internet: "internet_explorer.png",
