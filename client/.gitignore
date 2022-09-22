@@ -22,5 +22,15 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+.github
 
 .env 
+
+### Firebase ###
+.idea
+**/node_modules/*
+**/.firebaserc
+
+### Firebase Patch ###
+.runtimeconfig.json
+.firebase/

@@ -101,25 +101,23 @@ function App() {
 
   return (
     <>
-      <Canvas shadows camera={{ position: [-5, 2, 10], fov: 75 }}>
+      {/* <Canvas shadows camera={{ position: [-5, 2, 10], fov: 75 }}>
         <Html fullscreen>
-          {/* <ContextMenu menu={contextMenus.Desktop} /> */}
-          <Desktop
-            fs={fs}
-            programs={programs}
-            windows={windows}
-            dispatch={dispatch}
-          />
-          {startMenuVisible && (
-            <StartMenu windows={windows} dispatch={dispatch} />
-          )}
-          <TaskBar
-            windows={windows}
-            dispatch={dispatch}
-            startMenuVisible={startMenuVisible}
-            setStartMenuVisible={setStartMenuVisible}
-          />
-        </Html>
+          <ContextMenu menu={contextMenus.Desktop} /> */}
+      <Desktop
+        fs={fs}
+        programs={programs}
+        windows={windows}
+        dispatch={dispatch}
+      />
+      {startMenuVisible && <StartMenu windows={windows} dispatch={dispatch} />}
+      <TaskBar
+        windows={windows}
+        dispatch={dispatch}
+        startMenuVisible={startMenuVisible}
+        setStartMenuVisible={setStartMenuVisible}
+      />
+      {/* </Html>
         <ambientLight intensity={0.3} />
         <directionalLight
           castShadow
@@ -140,7 +138,7 @@ function App() {
             <meshStandardMaterial color={"#008284"} />
           </mesh>
         </group>
-      </Canvas>
+      </Canvas> */}
     </>
   )
 }

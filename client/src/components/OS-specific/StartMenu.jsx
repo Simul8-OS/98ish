@@ -6,6 +6,8 @@ const StartMenu = ({ dispatch }) => {
     e.preventDefault()
     switch (type) {
       case "My Computer":
+        fs.goBackToDirectory("root")
+        fs.openDirectory("C:")
         dispatch({
           type: "open_window",
           payload: {
@@ -18,7 +20,7 @@ const StartMenu = ({ dispatch }) => {
             height: 400,
             positionX: 5,
             positionY: 100,
-            icon_url: "/src/assets/program_icons/computer_explorer.png",
+            icon_url: "/assets/program_icons/computer_explorer.png",
           },
         })
         return
@@ -37,9 +39,11 @@ const StartMenu = ({ dispatch }) => {
             height: 400,
             positionX: 5,
             positionY: 100,
-            icon_url: "/src/assets/program_icons/computer_explorer.png",
+            icon_url: "/assets/program_icons/computer_explorer.png",
           },
         })
+        return
+      case "Shut Down":
         return
       default:
         return
@@ -80,7 +84,7 @@ const StartMenu = ({ dispatch }) => {
             className="d-flex"
             onClick={(e) => handleClick(e, "My Computer")}
           >
-            <img src="/src/assets/program_icons/computer_explorer.png" alt="" />
+            <img src="/assets/program_icons/computer_explorer.png" alt="" />
             <p>
               My <span style={underline}>C</span>omputer
             </p>
@@ -93,7 +97,7 @@ const StartMenu = ({ dispatch }) => {
             className="d-flex"
             onClick={(e) => handleClick(e, "Programs")}
           >
-            <img src="/src/assets/directory_programs.ico" alt="Programs" />
+            <img src="/assets/directory_programs.ico" alt="Programs" />
             <p>
               <span style={underline}>P</span>rograms
             </p>
@@ -120,7 +124,7 @@ const StartMenu = ({ dispatch }) => {
             className="d-flex"
             onClick={(e) => handleClick(e)}
           >
-            <img src="/src/assets/log_off.png" alt="Log off" />
+            <img src="/assets/log_off.png" alt="Log off" />
             <p>
               <span style={underline}>L</span>og Off 98ish...
             </p>
@@ -131,9 +135,9 @@ const StartMenu = ({ dispatch }) => {
             href="#"
             style={itemStyle}
             className="d-flex"
-            onClick={(e) => handleClick(e)}
+            onClick={(e) => handleClick(e, "Shut down")}
           >
-            <img src="/src/assets/shut_down.png" alt="Shut Down" />
+            <img src="/assets/shut_down.png" alt="Shut Down" />
             <p>
               Sh<span style={underline}>u</span>t Down...
             </p>

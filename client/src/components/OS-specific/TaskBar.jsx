@@ -1,6 +1,5 @@
-import React, { useState } from "react"
-import StartMenu from "./StartMenu"
-import DateAndTime from "../DateAndTime"
+import React from "react"
+import DateAndTime from "./DateAndTime"
 
 const TaskBar = ({
   windows,
@@ -24,15 +23,15 @@ const TaskBar = ({
           onClick={(e) => setStartMenuVisible(!startMenuVisible)}
         >
           <img
-            className="img-fluid me-1"
+            className="img-fluid me-2"
             style={{ width: 24 }}
-            src="/src/assets/start98.png"
+            src="/assets/start98.png"
             alt="Start Menu"
           />
-          <p className="mb-0">Start</p>
+          <p className="mb-0 startBtn">Start</p>
         </div>
       </div>
-      <div className="col taskbarRight">
+      <div className="col taskbarRight p-0">
         {windows &&
           windows.map((window, index) => {
             let tabStyle
@@ -75,7 +74,9 @@ const TaskBar = ({
             )
           })}
       </div>
-      <div className="col-auto p-0"><DateAndTime /></div>
+      <div className="col-auto p-0 pe-1">
+        <DateAndTime />
+      </div>
     </div>
   )
 }

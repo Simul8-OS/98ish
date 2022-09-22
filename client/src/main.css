@@ -2,6 +2,10 @@
   box-sizing: border-box;
 }
 
+body {
+  background-image: url("/assets/vaporwave.png");
+}
+
 html, body, #root {
   width: 100%;
   height: 100%;
@@ -17,6 +21,7 @@ html, body, #root {
 
 .desktop-row {
   height: 100vh;
+  width: calc(100% - 1rem);
 }
 
 .desktopIcon {
@@ -92,6 +97,11 @@ html, body, #root {
   width: 15%;
   font-weight: 500;
 }
+.date-and-time {
+  font-family: "Pixelated MS Sans Serif", Arial;
+  -webkit-font-smoothing: none;
+  font-size: 16px;
+}
 
 /************ END TASKBAR *************/
 
@@ -109,6 +119,13 @@ hr.sm {
   color: #555;
   opacity: 1;
   box-shadow: 0 1px 0 #eee;
+}
+
+.startBtn {
+  font-family: "Pixelated MS Sans Serif", Arial;
+  -webkit-font-smoothing: none;
+  font-weight: bold;
+  font-size: 16px;
 }
 
 /************ END START MENU **********/
