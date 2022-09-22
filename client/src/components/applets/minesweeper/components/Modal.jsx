@@ -11,6 +11,7 @@ const Modal = ({ reset, completeTime }) => {
 
   return (
     <div
+      className="row justify-content-center align-items-center"
       style={{
         opacity: render ? 1 : 0,
         height: "100%",
@@ -19,9 +20,10 @@ const Modal = ({ reset, completeTime }) => {
         backgroundColor: "rgba(0,0,0,0.3)",
       }}
     >
-      <div id="gameOverImage"></div>
-      <div onClick={() => reset()} className="tryAgain">
-        Try Again
+      <div onClick={() => reset(true)} className="col-6 text-center">
+        <button className="p-2">
+          <h2 className="m-0">Try Again</h2>
+        </button>
       </div>
     </div>
   )

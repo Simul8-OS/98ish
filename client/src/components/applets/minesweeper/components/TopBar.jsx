@@ -5,7 +5,7 @@ export default function TopBar({ gameOver, setTime }) {
   return (
     <div
       style={{
-        background: "#4a752c",
+        background: "#C0C0C0",
         padding: "10px 0",
         display: "flex",
         flexDirection: "row",

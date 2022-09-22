@@ -18,7 +18,7 @@ const Cell = ({ data, flagCell, updateBoard }) => {
         ? data.value === "X"
           ? mineColor()
           : bombChexPattern(data.x, data.y)
-        : "C0C0C0",
+        : chexPattern(data.x, data.y),
       borderTop: data.revealed ? "0" : "4px solid #eee",
       borderLeft: data.revealed ? "0" : "4px solid #eee",
       borderBottom: data.revealed ? "0" : "4px solid #555",
@@ -62,13 +62,13 @@ const Cell = ({ data, flagCell, updateBoard }) => {
 
 const chexPattern = (x, y) => {
   if (x % 2 === 0 && y % 2 === 0) {
-    return "#aad751"
+    return "#C0C0C0"
   } else if (x % 2 === 0 && y % 2 !== 0) {
-    return "#a2d249"
+    return "#C0C0C0"
   } else if (x % 2 !== 0 && y % 2 === 0) {
-    return "#a2d249"
+    return "#C0C0C0"
   } else {
-    return "#aad751"
+    return "#C0C0C0"
   }
 }
 

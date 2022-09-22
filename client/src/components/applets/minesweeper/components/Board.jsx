@@ -14,7 +14,7 @@ export default function Board() {
 
   useEffect(() => {
     const generateBoard = () => {
-      const getBoard = createBoard(10, 15, 20, setMineLocations)
+      const getBoard = createBoard(15, 15, 20, setMineLocations)
       setNonMinesCount(100 - 20)
       setTime(0)
       setBoard(getBoard.board)
