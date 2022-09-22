@@ -2,11 +2,12 @@ import React, { useState, useReducer, useContext } from "react"
 import { Html, softShadows, OrbitControls } from "@react-three/drei"
 import { Canvas, extend } from "@react-three/fiber"
 import TaskBar from "./components/OS-specific/TaskBar"
+import StartMenu from "./components/OS-specific/StartMenu"
 import Desktop from "./components/OS-specific/Desktop"
 import { fs } from "./utils/fs"
 import { programs } from "./utils/programs"
-import ContextMenu from "./components/applets/fileExplorer/components/ContextMenu"
-import { contextMenus } from "./utils/contextMenus"
+// import ContextMenu from "./components/applets/fileExplorer/components/ContextMenu"
+// import { contextMenus } from "./utils/contextMenus"
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -95,8 +96,8 @@ const reducer = (state, action) => {
 }
 
 function App() {
-  const [gameData, setGameData] = useState({})
   const [windows, dispatch] = useReducer(reducer, [])
+  const [startMenuVisible, setStartMenuVisible] = useState(false)
 
   return (
     <>
@@ -108,10 +109,16 @@ function App() {
             programs={programs}
             windows={windows}
             dispatch={dispatch}
-            gameData={gameData}
-            setGameData={setGameData}
           />
-          <TaskBar windows={windows} dispatch={dispatch} />
+          {startMenuVisible && (
+            <StartMenu windows={windows} dispatch={dispatch} />
+          )}
+          <TaskBar
+            windows={windows}
+            dispatch={dispatch}
+            startMenuVisible={startMenuVisible}
+            setStartMenuVisible={setStartMenuVisible}
+          />
         </Html>
         <ambientLight intensity={0.3} />
         <directionalLight

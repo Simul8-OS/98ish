@@ -29,8 +29,8 @@ export const programs = [
   },
   {
     name: "My Computer",
-    image_url: "/src/assets/computer_explorer.png",
-    icon_url: "./src/assets/computer_explorer.png",
+    image_url: "/src/assets/program_icons/computer_explorer.png",
+    icon_url: "./src/assets/program_icons/computer_explorer.png",
     width: 600,
     height: 400,
   },
@@ -38,7 +38,7 @@ export const programs = [
     name: "Notepad",
     image_url: "/src/assets/note.png",
     icon_url: "/src/assets/note.png",
-    width: 600,
+    width: 400,
     height: 400,
   },
   {
