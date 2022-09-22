@@ -1,37 +1,40 @@
 import React, { useEffect, useState, useRef } from "react"
-import io from "socket.io-client"
 
-const Chat = ({ name }) => {
-  const [socket] = useState(() => io(":8000"))
+const Chat = ({ name, setShare, dispatch, socket }) => {
   const [msg, setMsg] = useState({
     name,
     content: "",
+    type: ""
   })
   const [messages, setMessages] = useState([])
   const bottom = useRef(null)
 
   useEffect(() => {
-    // we need to set up all of our event listeners
-    // in the useEffect callback function
-    // socket.on("welcome", (msg) => console.log(msg))
     socket.on("server_message", (msg) =>
       setMessages((prevMessages) => {
         return [...prevMessages, msg]
       })
     )
-    return () => socket.disconnect(true)
   }, [])
 
   useEffect(() => {
     bottom.current.scrollIntoView()
   }, [messages])
 
+
+  
   const sendMessage = (e) => {
     e.preventDefault()
+
+    if (msg.content.length == 0)
+      return
+
     socket.emit("chat_message", msg)
+
     setMsg({
       name,
       content: "",
+      type: ""
     })
   }
 
@@ -40,7 +43,7 @@ const Chat = ({ name }) => {
     <div className="container h-100">
       <div className="row justify-content-center"> 
           <div
-            className="card border-success rounded-0"
+            className="card rounded-0"
           >
             <div className="p-3 pb-0">
               {messages.map((msg, idx) => {
@@ -52,6 +55,29 @@ const Chat = ({ name }) => {
                         : "d-flex flex-row"
                     }
                     key={idx}
+
+                    onClick={
+                      () => {
+                        if (msg.type == "share"){
+                          setShare(msg.content)
+                          dispatch({
+                            type: "open_window",
+                            payload: {
+                              name: "View Video",
+                              minimized: false,
+                              maximized: false,
+                              active: true,
+                              closed: false,
+                              width: 600,
+                              height: 600,
+                              positionX: 10,
+                              positionY: 0,
+                              icon_url: './src/assets/program_icons/video.png',
+                            },
+                          })
+                        }
+                      }
+                    }
                   >
                     <div
                       className={
@@ -80,8 +106,7 @@ const Chat = ({ name }) => {
             </div>
             <div
               style={{
-                borderTop: "1px solid #198754",
-                backgroundColor: "white",
+                backgroundColor: "grey",
               }}
               className="row position-sticky bottom-0 h-100"
             >
@@ -97,6 +122,7 @@ const Chat = ({ name }) => {
                         setMsg({
                           name: name,
                           content: e.target.value,
+                          type: "chat"
                         })
                       }
                     />
