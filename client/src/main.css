@@ -316,6 +316,10 @@ hr.sm {
   height: 70vh;
 }
 
+.videoPreview {
+  width: 100%;
+}
+
 /**************** END VIDEO PLAYER *****************/
 
 /***************** CHAT APP *****************/
