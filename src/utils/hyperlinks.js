@@ -1,6 +1,6 @@
 export const hyperlinks = {
   AOL: "https://www.aol.com/",
-  Yahoo: "https://www.aol.com/",
+  Yahoo: "https://www.yahoo.com/",
   "Tim Tang": "http://www.timtang.com/ttt/",
   "Ask Jeeves": "https://www.ask.com/",
   Geocities: "https://www.yahoo.com/",
