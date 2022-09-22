@@ -306,6 +306,10 @@ html, body, #root {
   height: 70vh;
 }
 
+.videoPreview {
+  width: 100%;
+}
+
 /**************** END VIDEO PLAYER *****************/
 
 /***************** CHAT APP *****************/

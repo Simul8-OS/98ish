@@ -55,4 +55,11 @@ export const programs = [
     width: 600,
     height: 400,
   },
+  // {
+  //   name: "Test",
+  //   image_url: "/src/assets/program_icons/aim2.png",
+  //   icon_url: "/src/assets/program_icons/aim2.png",
+  //   width: 600,
+  //   height: 400,
+  // },
 ]

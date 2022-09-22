@@ -153,6 +153,8 @@ const Desktop = ({ fs, programs, windows, dispatch }) => {
                   {window.name == "Video Player" && <VideoPlayer socket={socket}/>}
                   {window.name == "Chat App" && <ChatApp dispatch={dispatch} socket={socket} setShare={setShare}/>}
                   {window.name == "View Video" && <iframe src={share} className="w-100" style={{height: 'calc(100% - 25px'}} allowFullScreen/>}
+                  {/* {window.name == "Test" && <iframe src="https://youtube.com" className="w-100" style={{height: 'calc(100% - 25px'}} allowFullScreen/>} */}
+
                 </div>
             </Rnd>
         )
