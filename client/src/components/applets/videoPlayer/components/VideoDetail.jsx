@@ -19,12 +19,15 @@ const VideoDetail = ({ video, setShare, socket }) => {
           <h4>{video.snippet.title}</h4>
 
           <div className="row">
-            <div className="col-9">
-              <p className="lead">{video.snippet.description}</p>
+            <div className="col-9 d-flex align-items-center">
+              {video.snippet.description ?
+              <p className="lead mb-0 videoDescription">{video.snippet.description}</p> :
+              <p className="lead mb-0 videoDescription">No description available</p>
+              }
             </div>
-            <div className="col-3 text-center">
+            <div className="col-3 text-end">
               <button
-                className="btn btn-success mt-3"
+                className="btn btn-success"
                 onClick={() => socket.emit("chat_message", {name: 'Brandon', content: videoSrc, type: 'share'})}
               >
               Share Video!

@@ -73,7 +73,7 @@ export const FILE_TYPE = {
   hover: "hover",
   chat: "chat",
   video: "video",
-  terminal: "terminal",
+  taskmanager: "taskmanager",
 }
 
 export class File extends Item {
@@ -500,7 +500,7 @@ fs.goBack()
 fs.createDirectory("Programs", "programs")
 fs.openDirectory("Programs")
 fs.createFile("Tetris", "tetris")
-fs.createFile("Terminal", "terminal")
+fs.createFile("Task Manager", "taskmanager")
 fs.createFile("Hover", "hover")
 fs.createFile("YouTube '98", "video")
 fs.createFile("Notepad", "notepad")

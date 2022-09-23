@@ -344,6 +344,15 @@ hr.sm {
   width: 100%;
 }
 
+.videoItem:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.videoDescription {
+  word-break: break-all;
+}
+
 /**************** END VIDEO PLAYER *****************/
 
 /***************** CHAT APP *****************/
@@ -358,6 +367,20 @@ hr.sm {
 }
 
 /***************** END CHAT APP *****************/
+
+/***************** TASK MANAGER *****************/
+
+.taskContainer {
+  overflow-y: scroll;
+ 
+}
+
+.killSwitch {
+  background-color: rgb(205, 29, 29);
+  color: white;
+}
+
+/***************** END TASK MANAGER *****************/
 
 
 /***********  SIZING UTILITY CLASSES ************/
