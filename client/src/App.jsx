@@ -6,6 +6,7 @@ import StartMenu from "./components/OS-specific/StartMenu"
 import Desktop from "./components/OS-specific/Desktop"
 import { fs } from "./utils/fs"
 import { programs } from "./utils/programs"
+import LiveSearch from "./components/OS-specific/LiveSearch"
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -85,6 +86,12 @@ const reducer = (state, action) => {
 function App() {
   const [windows, dispatch] = useReducer(reducer, [])
   const [startMenuVisible, setStartMenuVisible] = useState(false)
+  const [results, setResults] = useState([])
+
+  const closeMenu = () => {
+    setResults([])
+    setStartMenuVisible(false)
+  }
 
   return (
     <>
@@ -95,9 +102,10 @@ function App() {
             programs={programs}
             windows={windows}
             dispatch={dispatch}
+            closeMenu={closeMenu}
           />
-          {startMenuVisible && (
-            <StartMenu windows={windows} dispatch={dispatch} />
+          {results.length && (
+            <LiveSearch results={results} dispatch={dispatch} />
           )}
           <TaskBar
             windows={windows}
@@ -105,6 +113,13 @@ function App() {
             startMenuVisible={startMenuVisible}
             setStartMenuVisible={setStartMenuVisible}
           />
+          {startMenuVisible && (
+            <StartMenu
+              windows={windows}
+              dispatch={dispatch}
+              setResults={setResults}
+            />
+          )}
         </Html>
         {/* <ambientLight intensity={0.3} />
         <directionalLight
