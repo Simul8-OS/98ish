@@ -2,6 +2,10 @@
   box-sizing: border-box;
 }
 
+body {
+  background-image: url("/assets/98ish-desktop.png");
+  background-size: cover;
+}
 
 html, body, #root {
   width: 100%;
@@ -12,9 +16,8 @@ html, body, #root {
 
 /************ DESKTOP *************/
 
-.desktop {
-  background-image: 'https://i.pinimg.com/originals/53/03/29/5303299916be50ba24001fec4c0bda5f.jpg';
-}
+/* .desktop {
+} */
 
 .desktop-row {
   height: 100vh;

@@ -5,14 +5,14 @@ import Circle from "./Circle"
 const Cell = ({ data, flagCell, updateBoard }) => {
   const style = {
     block: {
-      width: 40,
-      height: 40,
+      width: 25,
+      height: 25,
       color: numColorCode(data.value),
       display: "flex",
       justifyContent: "center",
       alignItems: "center",
       fontWeight: 800,
-      fontSize: 30,
+      fontSize: 20,
       cursor: "pointer",
       background: data.revealed
         ? data.value === "X"

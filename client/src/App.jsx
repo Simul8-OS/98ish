@@ -1,13 +1,11 @@
-import React, { useState, useReducer, useContext } from "react"
-import { Html, softShadows, OrbitControls } from "@react-three/drei"
-import { Canvas, extend } from "@react-three/fiber"
+import React, { useState, useReducer } from "react"
+import { Html } from "@react-three/drei"
+import { Canvas } from "@react-three/fiber"
 import TaskBar from "./components/OS-specific/TaskBar"
 import StartMenu from "./components/OS-specific/StartMenu"
 import Desktop from "./components/OS-specific/Desktop"
 import { fs } from "./utils/fs"
 import { programs } from "./utils/programs"
-import ContextMenu from "./components/applets/fileExplorer/components/ContextMenu"
-import { contextMenus } from "./utils/contextMenus"
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -27,7 +25,6 @@ const reducer = (state, action) => {
         }
         return window
       })
-    // return state.filter((_, idx) => idx !== action.payload.index)
 
     case "toggle_minimize_tab":
       return state.map((window, idx) => {
@@ -80,16 +77,6 @@ const reducer = (state, action) => {
         }
         return window
       })
-
-    // case "reset_position":
-    //   return state.map((window, idx) => {
-    //     if (idx === action.payload.index) {
-    //       alert("hit")
-    //       return {...window, reset: true}
-    //     }
-    //     return window
-    //   })
-
     default:
       return state
   }
@@ -103,22 +90,23 @@ function App() {
     <>
       <Canvas shadows camera={{ position: [-5, 2, 10], fov: 75 }}>
         <Html fullscreen>
-          <ContextMenu menu={contextMenus.Desktop} />
-      <Desktop
-        fs={fs}
-        programs={programs}
-        windows={windows}
-        dispatch={dispatch}
-      />
-      {startMenuVisible && <StartMenu windows={windows} dispatch={dispatch} />}
-      <TaskBar
-        windows={windows}
-        dispatch={dispatch}
-        startMenuVisible={startMenuVisible}
-        setStartMenuVisible={setStartMenuVisible}
-      />
-      </Html>
-        <ambientLight intensity={0.3} />
+          <Desktop
+            fs={fs}
+            programs={programs}
+            windows={windows}
+            dispatch={dispatch}
+          />
+          {startMenuVisible && (
+            <StartMenu windows={windows} dispatch={dispatch} />
+          )}
+          <TaskBar
+            windows={windows}
+            dispatch={dispatch}
+            startMenuVisible={startMenuVisible}
+            setStartMenuVisible={setStartMenuVisible}
+          />
+        </Html>
+        {/* <ambientLight intensity={0.3} />
         <directionalLight
           castShadow
           position={[0, 20, 0]}
@@ -131,13 +119,13 @@ function App() {
           shadow-camera-top={30}
           shadow-camera-bottom={-30}
         />
-        <pointLight position={[-5, 2, 10]} intensity={1} />
-        <group>
+        <pointLight position={[-5, 2, 10]} intensity={1} /> */}
+        {/* <group>
           <mesh rotation={[0, -0.4, 0]}>
             <planeGeometry args={[100, 100]} />
             <meshStandardMaterial color={"#008284"} />
           </mesh>
-        </group>
+        </group> */}
       </Canvas>
     </>
   )
