@@ -2,9 +2,6 @@
   box-sizing: border-box;
 }
 
-body {
-  background-image: url("/assets/vaporwave.png");
-}
 
 html, body, #root {
   width: 100%;

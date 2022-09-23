@@ -29,9 +29,10 @@ const Desktop = ({ fs, programs, windows, dispatch }) => {
               className="p-0 desktopIcon"
               key={index}
               enableResizing="false"
+              dragGrid={[15,15]}
             >
               <div
-                className="text-center desktopIcon"
+                className="d-flex flex-column align-items-center text-center desktopIcon"
                 onDoubleClick={() => {
                   dispatch({
                     type: "open_window",

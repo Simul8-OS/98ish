@@ -6,8 +6,8 @@ import StartMenu from "./components/OS-specific/StartMenu"
 import Desktop from "./components/OS-specific/Desktop"
 import { fs } from "./utils/fs"
 import { programs } from "./utils/programs"
-// import ContextMenu from "./components/applets/fileExplorer/components/ContextMenu"
-// import { contextMenus } from "./utils/contextMenus"
+import ContextMenu from "./components/applets/fileExplorer/components/ContextMenu"
+import { contextMenus } from "./utils/contextMenus"
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -101,9 +101,9 @@ function App() {
 
   return (
     <>
-      {/* <Canvas shadows camera={{ position: [-5, 2, 10], fov: 75 }}>
+      <Canvas shadows camera={{ position: [-5, 2, 10], fov: 75 }}>
         <Html fullscreen>
-          <ContextMenu menu={contextMenus.Desktop} /> */}
+          <ContextMenu menu={contextMenus.Desktop} />
       <Desktop
         fs={fs}
         programs={programs}
@@ -117,7 +117,7 @@ function App() {
         startMenuVisible={startMenuVisible}
         setStartMenuVisible={setStartMenuVisible}
       />
-      {/* </Html>
+      </Html>
         <ambientLight intensity={0.3} />
         <directionalLight
           castShadow
@@ -138,7 +138,7 @@ function App() {
             <meshStandardMaterial color={"#008284"} />
           </mesh>
         </group>
-      </Canvas> */}
+      </Canvas>
     </>
   )
 }
