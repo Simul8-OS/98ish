@@ -38,12 +38,12 @@ const Chat = ({ name, setShare, dispatch, socket }) => {
 
   return (
     
-    <div className="container h-100">
+    <div className="container" style={{height: 'calc(100%-1rem)'}}>
       <div className="row justify-content-center"> 
           <div
             className="card rounded-0"
           >
-            <div className="p-3 pb-0">
+            <div className="pb-0">
               {messages.map((msg, idx) => {
                 return (
                   <div
@@ -70,7 +70,7 @@ const Chat = ({ name, setShare, dispatch, socket }) => {
                               height: 432,
                               positionX: 10,
                               positionY: 0,
-                              icon_url: './src/assets/program_icons/video.png',
+                              icon_url: '/assets/program_icons/video.png',
                             },
                           })
                         }
@@ -80,7 +80,7 @@ const Chat = ({ name, setShare, dispatch, socket }) => {
                     <div
                       className={
                         msg.name == name
-                          ? "mb-3 rounded-3 col-6 px-3 p-1 justify-self-end"
+                          ? "my-2 rounded-3 col-6 px-3 p-1 justify-self-end"
                           : "mb-3 rounded-3 col-6 px-3 p-1 justify-self-start"
                       }
                       style={
