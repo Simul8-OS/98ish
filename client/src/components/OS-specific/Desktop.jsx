@@ -29,7 +29,7 @@ const Desktop = ({ fs, programs, windows, dispatch }) => {
               className="p-0 desktopIcon"
               key={index}
               enableResizing="false"
-              dragGrid={[15,15]}
+              dragGrid={[15, 15]}
             >
               <div
                 className="d-flex flex-column align-items-center text-center desktopIcon"
@@ -202,10 +202,10 @@ const Desktop = ({ fs, programs, windows, dispatch }) => {
                     {window.name == "Notepad" && <Notepad file={window.file} />}
                     {window.name == "Minesweeper" && <Minesweeper />}
 
-                    {window.name == "Video Player" && (
+                    {window.name == "YouTube '98" && (
                       <VideoPlayer socket={socket} />
                     )}
-                    {window.name == "Chat App" && (
+                    {window.name == "98 Messenger" && (
                       <ChatApp
                         dispatch={dispatch}
                         socket={socket}

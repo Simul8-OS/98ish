@@ -21,7 +21,7 @@ export const programs = [
     height: 600,
   },
   {
-    name: "Video Player",
+    name: "YouTube '98",
     image_url: "./assets/program_icons/video-48.png",
     icon_url: "./assets/program_icons/video-48.png",
     width: 600,
@@ -49,7 +49,7 @@ export const programs = [
     height: 456,
   },
   {
-    name: "Chat App",
+    name: "98 Messenger",
     image_url: "/assets/program_icons/aim2-48.png",
     icon_url: "/assets/program_icons/aim2-48.png",
     width: 600,
