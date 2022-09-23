@@ -12,8 +12,8 @@ const VideoDetail = ({ video, setShare, socket }) => {
   
     const videoSrc = `https://www.youtube.com/embed/${video.id.videoId}`;
     return (
-      <div>
-        <iframe src={videoSrc} className="videoFrame w-100" allowFullScreen/>
+      <div className="container">
+        <iframe src={videoSrc} className="videoFrame w-100 px-2" allowFullScreen/>
     
         <div className="container-fluid mt-1">
           <h4>{video.snippet.title}</h4>
