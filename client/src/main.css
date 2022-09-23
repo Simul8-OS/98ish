@@ -5,6 +5,7 @@
 body {
   background-image: url("/assets/98ish-desktop.png");
   background-size: cover;
+  background-position: center;
 }
 
 html, body, #root {

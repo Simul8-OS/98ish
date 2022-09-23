@@ -186,11 +186,15 @@ const LiveSearch = ({ results, dispatch }) => {
         return
     }
   }
-  console.log("Hello results")
   return (
     <div
       className="window"
-      style={{ position: "fixed", top: 60, left: -190, height: "fit-content" }}
+      style={{
+        position: "fixed",
+        top: "100px",
+        right: "150px",
+        height: "fit-content",
+      }}
     >
       <div
         className="bg-light overflow-scroll"

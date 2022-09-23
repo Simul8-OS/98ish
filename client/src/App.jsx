@@ -27,13 +27,13 @@ const reducer = (state, action) => {
         return window
       })
 
-      case "end_all":
-        return state.map((window, idx) => {
-          if (window.name != "Task Manager"){
-            return { ...window, closed: true }
-          }
-          return window
-        })
+    case "end_all":
+      return state.map((window, idx) => {
+        if (window.name != "Task Manager") {
+          return { ...window, closed: true }
+        }
+        return window
+      })
 
     case "toggle_minimize_tab":
       return state.map((window, idx) => {
@@ -112,9 +112,6 @@ function App() {
             dispatch={dispatch}
             closeMenu={closeMenu}
           />
-          {results.length && (
-            <LiveSearch results={results} dispatch={dispatch} />
-          )}
           <TaskBar
             windows={windows}
             dispatch={dispatch}
@@ -127,6 +124,9 @@ function App() {
               dispatch={dispatch}
               setResults={setResults}
             />
+          )}
+          {results.length && (
+            <LiveSearch results={results} dispatch={dispatch} />
           )}
         </Html>
         {/* <ambientLight intensity={0.3} />
