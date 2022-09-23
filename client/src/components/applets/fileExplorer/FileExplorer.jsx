@@ -94,11 +94,11 @@ const FileExplorer = ({ fs, dispatch }) => {
           },
         })
         return
-      case "terminal":
+      case "taskmanager":
         dispatch({
           type: "open_window",
           payload: {
-            name: "Terminal",
+            name: "Task Manager",
             minimized: false,
             maximized: false,
             active: true,
@@ -107,7 +107,7 @@ const FileExplorer = ({ fs, dispatch }) => {
             height: 200,
             positionX: 10,
             positionY: 0,
-            icon_url: "/assets/" + imageMapper.terminal,
+            icon_url: "/assets/" + imageMapper.taskmanager,
           },
         })
         return
@@ -293,12 +293,17 @@ const FileExplorer = ({ fs, dispatch }) => {
                     textDecoration: "none",
                   }}
                   onClick={(e) => e.preventDefault()}
+
+                  draggable="false"
+                  dragstart="false"
                 >
                   <div>
                     <img
                       src={"/assets/" + imageMapper[item.type]}
                       alt=""
                       onDoubleClick={(e) => handleDoubleClick(e, item)}
+                      draggable="false"
+                      dragstart="false"
                     />
                     <p>{item.name}</p>
                   </div>

@@ -8,6 +8,8 @@ const VideoPlayer = ({setShare, socket}) => {
     const [videos, setVideos] = useState([])
     const [selectedVideo, setSelectedVideo] = useState(null)
 
+    const topRef = useRef(null)
+    const executeScroll = () => topRef.current.scrollIntoView()
 
     const handleSubmit = async (termFromSearchBar) => {
       const response = await youtube.get('/search', {
@@ -26,7 +28,7 @@ const VideoPlayer = ({setShare, socket}) => {
     return (
       <div style={{height: 'calc(100% - 25px)', overflowY: 'scroll', overflowX: 'hidden'}}>
           <div className="row">
-            <div className="d-flex justify-content-center flex-column align-items-center">
+            <div className="d-flex justify-content-center flex-column align-items-center" ref={topRef}>
               <SearchBar handleFormSubmit={handleSubmit}/>
             </div>
             <div className="my-3">
@@ -34,7 +36,7 @@ const VideoPlayer = ({setShare, socket}) => {
             </div>
           </div>
           
-          <VideoList handleVideoSelect={handleVideoSelect} videos={videos}/>
+          <VideoList executeScroll={executeScroll} handleVideoSelect={handleVideoSelect} videos={videos}/>
       </div>
   )
 }

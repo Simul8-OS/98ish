@@ -26,6 +26,14 @@ const reducer = (state, action) => {
         return window
       })
 
+      case "end_all":
+        return state.map((window, idx) => {
+          if (window.name != "Task Manager"){
+            return { ...window, closed: true }
+          }
+          return window
+        })
+
     case "toggle_minimize_tab":
       return state.map((window, idx) => {
         if (idx === action.payload.index) {

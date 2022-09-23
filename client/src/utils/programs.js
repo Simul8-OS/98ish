@@ -7,7 +7,7 @@ export const programs = [
     height: 600,
   },
   {
-    name: "Terminal",
+    name: "Task Manager",
     image_url: "./assets/program_icons/terminal2-48.png",
     icon_url: "./assets/program_icons/terminal2-48.png",
     width: 200,
