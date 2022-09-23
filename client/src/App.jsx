@@ -125,7 +125,7 @@ function App() {
               setResults={setResults}
             />
           )}
-          {results.length && (
+          {results.length !== 0 && (
             <LiveSearch results={results} dispatch={dispatch} />
           )}
         </Html>
