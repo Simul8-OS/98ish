@@ -4,7 +4,6 @@ import { hyperlinks } from "../../../utils/hyperlinks"
 import InputDialog from "./components/InputDialog"
 
 const FileExplorer = ({ fs, dispatch }) => {
-  fs.goBackToDirectory("C:")
   const [dir, setDir] = useState(fs.currentDirectory.content)
   const [address, setAddress] = useState(
     `${fs.currentDirectoryPath.join("\\")}\\`.slice(5)
@@ -54,6 +53,7 @@ const FileExplorer = ({ fs, dispatch }) => {
             height: 400,
             positionX: 10,
             positionY: 0,
+            icon_url: "/assets/" + imageMapper.notepad,
           },
         })
         return
@@ -71,6 +71,7 @@ const FileExplorer = ({ fs, dispatch }) => {
             height: 400,
             positionX: 10,
             positionY: 0,
+            icon_url: "/assets/" + imageMapper.notepad,
           },
         })
         return
@@ -89,6 +90,7 @@ const FileExplorer = ({ fs, dispatch }) => {
             height: 600,
             positionX: 10,
             positionY: 0,
+            icon_url: "/assets/" + imageMapper.tetris,
           },
         })
         return
@@ -105,6 +107,7 @@ const FileExplorer = ({ fs, dispatch }) => {
             height: 200,
             positionX: 10,
             positionY: 0,
+            icon_url: "/assets/" + imageMapper.terminal,
           },
         })
         return
@@ -121,6 +124,7 @@ const FileExplorer = ({ fs, dispatch }) => {
             height: 600,
             positionX: 10,
             positionY: 0,
+            icon_url: "/assets/" + imageMapper.hover,
           },
         })
         return
@@ -128,7 +132,7 @@ const FileExplorer = ({ fs, dispatch }) => {
         dispatch({
           type: "open_window",
           payload: {
-            name: "Video Player",
+            name: "YouTube '98",
             minimized: false,
             maximized: false,
             active: true,
@@ -137,6 +141,7 @@ const FileExplorer = ({ fs, dispatch }) => {
             height: 600,
             positionX: 10,
             positionY: 0,
+            icon_url: "/assets/" + imageMapper.video,
           },
         })
         return
@@ -153,6 +158,7 @@ const FileExplorer = ({ fs, dispatch }) => {
             height: 400,
             positionX: 10,
             positionY: 0,
+            icon_url: "/assets/" + imageMapper.notepad,
           },
         })
         return
@@ -169,6 +175,7 @@ const FileExplorer = ({ fs, dispatch }) => {
             height: 456,
             positionX: 10,
             positionY: 0,
+            icon_url: "/assets/" + imageMapper.minesweeper,
           },
         })
         return
@@ -176,7 +183,7 @@ const FileExplorer = ({ fs, dispatch }) => {
         dispatch({
           type: "open_window",
           payload: {
-            name: "Chat App",
+            name: "98 Messenger",
             minimized: false,
             maximized: false,
             active: true,
@@ -185,6 +192,7 @@ const FileExplorer = ({ fs, dispatch }) => {
             height: 400,
             positionX: 10,
             positionY: 0,
+            icon_url: "/assets/" + imageMapper.chat,
           },
         })
         return
