@@ -1,7 +1,15 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { fs } from "../../utils/fs"
 
-const StartMenu = ({ dispatch }) => {
+const StartMenu = ({ dispatch, setResults }) => {
+  const [query, setQuery] = useState("")
+
+  useEffect(() => {
+    if (query) {
+      setResults(fs.findAllItemsByQuery(query))
+    }
+  }, [query])
+
   const handleClick = (e, type) => {
     e.preventDefault()
     switch (type) {
@@ -54,13 +62,13 @@ const StartMenu = ({ dispatch }) => {
     backgroundColor: "#C0C0C0",
     position: "relative",
     height: "min-content",
-    fontSize: "1.2rem",
+    fontSize: "19px",
     textDecoration: "none",
     color: "#000",
     listStyle: "none",
     width: "max-content",
     bottom: "275px",
-    zIndex: '99999999'
+    zIndex: "99999999",
   }
 
   const itemStyle = {
@@ -109,8 +117,12 @@ const StartMenu = ({ dispatch }) => {
               <input
                 type="text"
                 style={{ height: "2rem" }}
-                className="w-100"
+                className="w-100 ps-2"
                 name="search"
+                value={query}
+                onChange={(e) => {
+                  setQuery(e.target.value)
+                }}
                 placeholder="Search Filesystem"
               />
             </div>

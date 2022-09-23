@@ -8,14 +8,15 @@ import Hover from "../applets/hover/Hover"
 import VideoPlayer from "../applets/videoPlayer/VideoPlayer"
 import Minesweeper from "../applets/minesweeper/Minesweeper"
 import ChatApp from "../applets/chatApp/ChatApp"
+import TaskManager from "../applets/taskManager/TaskManager"
 import io from "socket.io-client"
 
-const Desktop = ({ fs, programs, windows, dispatch }) => {
+const Desktop = ({ fs, programs, windows, dispatch, closeMenu }) => {
   const [socket] = useState(() => io(":8000"))
   const [share, setShare] = useState("")
 
   return (
-    <div>
+    <div onClick={(e) => closeMenu()}>
       {programs &&
         programs.map((program, index) => {
           return (
@@ -30,6 +31,7 @@ const Desktop = ({ fs, programs, windows, dispatch }) => {
               key={index}
               enableResizing="false"
               dragGrid={[15, 15]}
+              bounds="window"
             >
               <div
                 className="d-flex flex-column align-items-center text-center desktopIcon"
@@ -46,7 +48,7 @@ const Desktop = ({ fs, programs, windows, dispatch }) => {
                       height: program.height,
                       positionX: 10,
                       positionY: 0,
-                      icon_url: program.icon_url,
+                      icon_url: program.icon_url
                     },
                   })
                 }}
@@ -148,7 +150,7 @@ const Desktop = ({ fs, programs, windows, dispatch }) => {
                         className="title-bar-text d-flex align-items-center"
                         style={{ height: "100%" }}
                       >
-                        <img src={window.icon_url} className="h-100" />
+                        <img src={window.icon_url} className="h-100" draggable="false" dragstart="false"/>
                         &nbsp;
                         <span>{window.name}</span>
                       </div>
@@ -218,6 +220,12 @@ const Desktop = ({ fs, programs, windows, dispatch }) => {
                         className="w-100"
                         style={{ height: "calc(100% - 25px" }}
                         allowFullScreen
+                      />
+                    )}
+                    {window.name == "Task Manager" && (
+                      <TaskManager
+                        dispatch={dispatch}
+                        windows={windows}
                       />
                     )}
                   </div>

@@ -53,35 +53,12 @@ const Chat = ({ name, setShare, dispatch, socket }) => {
                         : "d-flex flex-row"
                     }
                     key={idx}
-
-                    onClick={
-                      () => {
-                        if (msg.type == "share"){
-                          setShare(msg.content)
-                          dispatch({
-                            type: "open_window",
-                            payload: {
-                              name: "View Video",
-                              minimized: false,
-                              maximized: false,
-                              active: true,
-                              closed: false,
-                              width: 768,
-                              height: 432,
-                              positionX: 10,
-                              positionY: 0,
-                              icon_url: '/assets/program_icons/video.png',
-                            },
-                          })
-                        }
-                      }
-                    }
                   >
                     <div
                       className={
                         msg.name == name
                           ? "my-2 rounded-3 col-6 px-3 p-1 justify-self-end"
-                          : "mb-3 rounded-3 col-6 px-3 p-1 justify-self-start"
+                          : "my-2 rounded-3 col-6 px-3 p-1 justify-self-start"
                       }
                       style={
                         msg.name == name
@@ -108,6 +85,29 @@ const Chat = ({ name, setShare, dispatch, socket }) => {
                               }
                             :
                               {}
+                        }
+
+                        onClick={
+                          () => {
+                            if (msg.type == "share"){
+                              setShare(msg.content)
+                              dispatch({
+                                type: "open_window",
+                                payload: {
+                                  name: "View Video",
+                                  minimized: false,
+                                  maximized: false,
+                                  active: true,
+                                  closed: false,
+                                  width: 768,
+                                  height: 432,
+                                  positionX: 10,
+                                  positionY: 0,
+                                  icon_url: '/assets/program_icons/video.png',
+                                },
+                              })
+                            }
+                          }
                         }
                       >{msg.content}</p>
                       <p className="mb-0 small text-end lead">-{msg.name}</p>

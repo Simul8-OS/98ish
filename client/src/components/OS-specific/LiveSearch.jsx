@@ -1,22 +1,8 @@
-import React, { useState } from "react"
-import { imageMapper } from "../../../utils/imageMapper"
-import { hyperlinks } from "../../../utils/hyperlinks"
-import InputDialog from "./components/InputDialog"
+import React from "react"
+import { imageMapper } from "../../utils/imageMapper"
+import { hyperlinks } from "../../utils/hyperlinks"
 
-const FileExplorer = ({ fs, dispatch }) => {
-  const [dir, setDir] = useState(fs.currentDirectory.content)
-  const [address, setAddress] = useState(
-    `${fs.currentDirectoryPath.join("\\")}\\`.slice(5)
-  )
-  const [newFolder, setNewFolder] = useState(false)
-  const [folderName, setFolderName] = useState("New Folder")
-  const [newFile, setNewFile] = useState(false)
-  const [fileName, setFileName] = useState("New File")
-
-  const getPath = () => {
-    return `${fs.currentDirectoryPath.join("\\")}\\`.slice(5)
-  }
-
+const LiveSearch = ({ results, dispatch }) => {
   const handleDoubleClick = (e, item) => {
     switch (item.type) {
       case "bookmarks":
@@ -94,20 +80,20 @@ const FileExplorer = ({ fs, dispatch }) => {
           },
         })
         return
-      case "taskmanager":
+      case "terminal":
         dispatch({
           type: "open_window",
           payload: {
-            name: "Task Manager",
+            name: "Terminal",
             minimized: false,
             maximized: false,
             active: true,
             closed: false,
-            width: 400,
-            height: 400,
+            width: 200,
+            height: 200,
             positionX: 10,
             positionY: 0,
-            icon_url: "/assets/" + imageMapper.taskmanager,
+            icon_url: "/assets/" + imageMapper.terminal,
           },
         })
         return
@@ -200,90 +186,18 @@ const FileExplorer = ({ fs, dispatch }) => {
         return
     }
   }
-
-  const createFolder = () => {
-    setNewFolder(true)
-  }
-
-  const createFile = () => {
-    setNewFile(true)
-  }
-
-  const goUp = () => {
-    fs.goBack()
-    setDir(fs.currentDirectory.content)
-    setAddress(getPath())
-  }
-
+  console.log("Hello results")
   return (
     <div
-      className="mb-0 justify-content-center align-items-center"
-      style={{ height: "calc(100% - 25px)" }}
+      className="window"
+      style={{ position: "fixed", top: 60, left: -190, height: "fit-content" }}
     >
-      {newFolder && (
-        <InputDialog
-          title={"Creating a folder in this folder"}
-          placeholder={folderName}
-          description={"Give a name to this folder"}
-          setDir={setDir}
-          setNewFolder={setNewFolder}
-        />
-      )}
-      {newFile && (
-        <InputDialog
-          title={"Creating a folder in this file"}
-          placeholder={fileName}
-          description={"Give a name to this file"}
-          setDir={setDir}
-          setNewFile={setNewFile}
-        />
-      )}
-      <div className="p-1">
-        <div className="field-row row">
-          <div className="col-auto pe-1 d-flex align-items-center justify-content-center h-100">
-            <img
-              className=""
-              src={"/assets/" + imageMapper.small_folder_up}
-              alt=""
-              onClick={() => goUp()}
-            ></img>
-          </div>
-          <form className="col p-0 m-0">
-            <input
-              className="w-100"
-              type="text"
-              value={address ? address : "Select a Drive"}
-              onChange={(e) => setAddress(e.target.value)}
-            />
-          </form>
-          <div className="col-auto px-0">
-            <button onClick={() => createFolder()}>Create Folder</button>
-          </div>
-          <div className="col-auto px-0">
-            <button onClick={() => createFile()}>Create File</button>
-          </div>
-          <div className="col-auto ps-0">
-            <button>
-              <label htmlFor="upload-files-btn" className="">
-                Upload File
-                <input
-                  type="file"
-                  id="upload-files-btn"
-                  accept="*/*"
-                  multiple
-                  className="d-none"
-                />
-              </label>
-            </button>
-          </div>
-        </div>
-      </div>
       <div
         className="bg-light overflow-scroll"
         style={{ height: "calc(100% - 32px)" }}
       >
         <div className="row row-cols-6 m-0 align-content-start pt-3">
-          {dir.map((item, idx) => {
+          {results.map((item, idx) => {
             return (
               <div key={idx} className="col p-0 text-center">
                 <a
@@ -293,17 +207,12 @@ const FileExplorer = ({ fs, dispatch }) => {
                     textDecoration: "none",
                   }}
                   onClick={(e) => e.preventDefault()}
-
-                  draggable="false"
-                  dragstart="false"
                 >
                   <div>
                     <img
                       src={"/assets/" + imageMapper[item.type]}
                       alt=""
                       onDoubleClick={(e) => handleDoubleClick(e, item)}
-                      draggable="false"
-                      dragstart="false"
                     />
                     <p>{item.name}</p>
                   </div>
@@ -313,8 +222,12 @@ const FileExplorer = ({ fs, dispatch }) => {
           })}
         </div>
       </div>
+      {/* {results &&
+        results.map((result, idx) => {
+          return <p>{result.name}</p>
+        })} */}
     </div>
   )
 }
 
-export default FileExplorer
+export default LiveSearch

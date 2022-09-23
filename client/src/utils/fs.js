@@ -73,7 +73,7 @@ export const FILE_TYPE = {
   hover: "hover",
   chat: "chat",
   video: "video",
-  terminal: "terminal",
+  taskmanager: "taskmanager",
 }
 
 export class File extends Item {
@@ -395,6 +395,14 @@ export class FileSystem {
     return this.#setupAndFind(itemNameOrValidatorFunc, fromDirectory, true)
   }
 
+  findAllItemsByQuery(itemNameOrValidatorFunc, fromDirectory = this.root) {
+    return this.#setupAndFindByQuery(
+      itemNameOrValidatorFunc,
+      fromDirectory,
+      true
+    )
+  }
+
   moveItemTo(itemName, dirPath) {
     const item = this.getItem(itemName)
 
@@ -416,6 +424,16 @@ export class FileSystem {
     }
 
     const func = (item) => item.name === itemNameOrValidatorFunc
+    return this.#findItem(func, fromDirectory, multiple)
+  }
+
+  #setupAndFindByQuery = (itemNameOrValidatorFunc, fromDirectory, multiple) => {
+    if (typeof itemNameOrValidatorFunc === "function") {
+      return this.#findItem(itemNameOrValidatorFunc, fromDirectory, multiple)
+    }
+
+    const func = (item) =>
+      item.name.toLowerCase().includes(itemNameOrValidatorFunc)
     return this.#findItem(func, fromDirectory, multiple)
   }
 
@@ -441,11 +459,8 @@ export class FileSystem {
     if ((match === null || multiple) && directories.length) {
       for (const subDir of directories) {
         const found = this.#findItem(isItem, subDir, multiple)
-        // If we're searching for all items, push to an array of matches
         if (multiple) {
           match.push(...found)
-
-          // Otherwise, return the matched item
         } else if (found) {
           match = found
           break
@@ -500,7 +515,7 @@ fs.goBack()
 fs.createDirectory("Programs", "programs")
 fs.openDirectory("Programs")
 fs.createFile("Tetris", "tetris")
-fs.createFile("Terminal", "terminal")
+fs.createFile("Task Manager", "taskmanager")
 fs.createFile("Hover", "hover")
 fs.createFile("YouTube '98", "video")
 fs.createFile("Notepad", "notepad")
