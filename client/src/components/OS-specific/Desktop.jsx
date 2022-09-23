@@ -202,10 +202,10 @@ const Desktop = ({ fs, programs, windows, dispatch }) => {
                     {window.name == "Notepad" && <Notepad file={window.file} />}
                     {window.name == "Minesweeper" && <Minesweeper />}
 
-                    {window.name == "Video Player" && (
+                    {window.name == "YouTube '98" && (
                       <VideoPlayer socket={socket} />
                     )}
-                    {window.name == "Chat App" && (
+                    {window.name == "98 Messenger" && (
                       <ChatApp
                         dispatch={dispatch}
                         socket={socket}
