@@ -9,13 +9,11 @@ export default function TopBar({ gameOver, setTime }) {
         padding: "10px 0",
         display: "flex",
         flexDirection: "row",
-        justifyContent: "space-around",
+        justifyContent: "space-between",
         alignItems: "center",
       }}
     >
-      <span role="img" aria-label="flag" style={{ paddingBottom: 10 }}>
-        🚩
-      </span>
+      <p className="mb-0 ms-3 h4">Flag 20 Bombs. Be Careful!</p>
       <Timer gameOver={gameOver} sendTime={setTime} />
     </div>
   )

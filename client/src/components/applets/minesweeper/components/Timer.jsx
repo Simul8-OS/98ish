@@ -27,7 +27,7 @@ export default function Timer({ gameOver, sendTime }) {
   }, [time, setTime, gameOver, sendTime])
 
   return (
-    <div style={{ color: "black", fontSize: 20 }}>
+    <div className="me-3" style={{ color: "black", fontSize: 20 }}>
       <span role="img" aria-label="clock" style={{ paddingRight: 10 }}>
         ⏰
       </span>
