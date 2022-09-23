@@ -8,10 +8,10 @@ export const programs = [
   },
   {
     name: "Task Manager",
-    image_url: "./assets/program_icons/terminal2-48.png",
-    icon_url: "./assets/program_icons/terminal2-48.png",
-    width: 200,
-    height: 200,
+    image_url: "./assets/program_icons/taskManager-48.png",
+    icon_url: "./assets/program_icons/taskManager-48.png",
+    width: 400,
+    height: 400,
   },
   {
     name: "Hover",

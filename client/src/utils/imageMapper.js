@@ -16,7 +16,7 @@ export const imageMapper = {
   video: "program_icons/video-48.png",
   chat: "program_icons/aim2-48.png",
   notepad: "note.png",
-  taskmanager: "program_icons/terminal2-48.png",
+  taskmanager: "program_icons/taskManager-48.png",
   programs: "programs.png",
   README: "README.png",
 }
