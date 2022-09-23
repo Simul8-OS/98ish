@@ -77,6 +77,7 @@ const FileExplorer = ({ fs, dispatch }) => {
         return
       case "internet":
         window.open(hyperlinks[item.name])
+        return
       case "tetris":
         dispatch({
           type: "open_window",
