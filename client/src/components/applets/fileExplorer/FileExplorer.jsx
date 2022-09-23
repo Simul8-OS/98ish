@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from "react"
+import React, { useState } from "react"
 import { imageMapper } from "../../../utils/imageMapper"
-import ContextMenu from "./components/ContextMenu"
-import { contextMenus } from "../../../utils/contextMenus"
 import { hyperlinks } from "../../../utils/hyperlinks"
 import InputDialog from "./components/InputDialog"
 
 const FileExplorer = ({ fs, dispatch }) => {
+  fs.goBackToDirectory("C:")
   const [dir, setDir] = useState(fs.currentDirectory.content)
   const [address, setAddress] = useState(
     `${fs.currentDirectoryPath.join("\\")}\\`.slice(5)
@@ -77,6 +76,118 @@ const FileExplorer = ({ fs, dispatch }) => {
         return
       case "internet":
         window.open(hyperlinks[item.name])
+      case "tetris":
+        dispatch({
+          type: "open_window",
+          payload: {
+            name: "Tetris",
+            minimized: false,
+            maximized: false,
+            active: true,
+            closed: false,
+            width: 600,
+            height: 600,
+            positionX: 10,
+            positionY: 0,
+          },
+        })
+        return
+      case "terminal":
+        dispatch({
+          type: "open_window",
+          payload: {
+            name: "Terminal",
+            minimized: false,
+            maximized: false,
+            active: true,
+            closed: false,
+            width: 200,
+            height: 200,
+            positionX: 10,
+            positionY: 0,
+          },
+        })
+        return
+      case "hover":
+        dispatch({
+          type: "open_window",
+          payload: {
+            name: "Hover",
+            minimized: false,
+            maximized: false,
+            active: true,
+            closed: false,
+            width: 600,
+            height: 600,
+            positionX: 10,
+            positionY: 0,
+          },
+        })
+        return
+      case "video":
+        dispatch({
+          type: "open_window",
+          payload: {
+            name: "Video Player",
+            minimized: false,
+            maximized: false,
+            active: true,
+            closed: false,
+            width: 600,
+            height: 600,
+            positionX: 10,
+            positionY: 0,
+          },
+        })
+        return
+      case "notepad":
+        dispatch({
+          type: "open_window",
+          payload: {
+            name: "Notepad",
+            minimized: false,
+            maximized: false,
+            active: true,
+            closed: false,
+            width: 400,
+            height: 400,
+            positionX: 10,
+            positionY: 0,
+          },
+        })
+        return
+      case "minesweeper":
+        dispatch({
+          type: "open_window",
+          payload: {
+            name: "Minesweeper",
+            minimized: false,
+            maximized: false,
+            active: true,
+            closed: false,
+            width: 373,
+            height: 456,
+            positionX: 10,
+            positionY: 0,
+          },
+        })
+        return
+      case "chat":
+        dispatch({
+          type: "open_window",
+          payload: {
+            name: "Chat App",
+            minimized: false,
+            maximized: false,
+            active: true,
+            closed: false,
+            width: 600,
+            height: 400,
+            positionX: 10,
+            positionY: 0,
+          },
+        })
+        return
       default:
         return
     }

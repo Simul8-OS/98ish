@@ -65,8 +65,15 @@ export const FILE_TYPE = {
   text: "text",
   executable: "executable",
   note: "note",
+  notepad: "notepad",
   internet: "internet",
   dos: "dos",
+  tetris: "tetris",
+  minesweeper: "minesweeper",
+  hover: "hover",
+  chat: "chat",
+  video: "video",
+  terminal: "terminal",
 }
 
 export class File extends Item {
@@ -77,7 +84,7 @@ export class File extends Item {
 
   constructor(
     name = "",
-    type = FILE_TYPE.TEXT,
+    type = FILE_TYPE.text,
     textContent = "",
     source = null
   ) {
@@ -491,6 +498,15 @@ fs.createFile("Isn't that something?", "text")
 fs.createFile("Sure is", "text")
 fs.goBack()
 fs.createDirectory("Programs", "programs")
+fs.openDirectory("Programs")
+fs.createFile("Tetris", "tetris")
+fs.createFile("Terminal", "terminal")
+fs.createFile("Hover", "hover")
+fs.createFile("Video Player", "video")
+fs.createFile("Notepad", "notepad")
+fs.createFile("Minesweeper", "minesweeper")
+fs.createFile("Chat App", "chat")
+fs.goBack()
 fs.createDirectory("Bookmarks", "bookmarks")
 fs.openDirectory("Bookmarks")
 fs.createFile("AOL", "internet")
