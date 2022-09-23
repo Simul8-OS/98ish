@@ -11,12 +11,12 @@ import ChatApp from "../applets/chatApp/ChatApp"
 import TaskManager from "../applets/taskManager/TaskManager"
 import io from "socket.io-client"
 
-const Desktop = ({ fs, programs, windows, dispatch }) => {
+const Desktop = ({ fs, programs, windows, dispatch, closeMenu }) => {
   const [socket] = useState(() => io(":8000"))
   const [share, setShare] = useState("")
 
   return (
-    <div>
+    <div onClick={(e) => closeMenu()}>
       {programs &&
         programs.map((program, index) => {
           return (
