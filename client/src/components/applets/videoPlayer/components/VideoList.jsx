@@ -1,9 +1,9 @@
 import VideoItem from './VideoItem';
 
 const VideoList = ({videos , handleVideoSelect, executeScroll}) => {
-    const renderedVideos =  videos.map((video) => {
+    const renderedVideos =  videos.map((video, index) => {
         return (
-            <div className="col-12 col-md-6 mb-4 videoItem">
+            <div className="col-12 col-md-6 mb-4 videoItem" key={index}>
                 <VideoItem key={video.id.videoId} executeScroll={executeScroll} video={video} handleVideoSelect={handleVideoSelect} />
             </div>
         )
