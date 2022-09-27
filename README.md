@@ -2,7 +2,7 @@
 
 *A simulated operating system in a nostalgic style. Created by the Brandon Taylor and Cameron De Robertis, the fresh minds behind Simul8-OS*
 
-![Demo Filesystem](.github/assets/demo-filesystem.png)
+![Demo Filesystem](github_assets/demo-filesystem.png)
 
 ## Features
 
@@ -14,5 +14,5 @@
 
 ## Demos
 
-![Demo Filesystem](.github/assets/demo-filesystem.gif)
-![Demo Youtube and Chat](.github/assets/demo-youtube-chat.gif)
+![Demo Filesystem](github_assets/demo-filesystem.gif)
+![Demo Youtube and Chat](github_assets/demo-youtube-chat.gif)
