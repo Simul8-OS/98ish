@@ -192,7 +192,7 @@ const LiveSearch = ({ results, dispatch }) => {
       className="window"
       style={{
         position: "absolute",
-        bottom: "200px",
+        bottom: "250px",
         left: "300px",
         height: "fit-content",
       }}
