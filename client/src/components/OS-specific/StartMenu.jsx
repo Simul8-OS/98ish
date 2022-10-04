@@ -7,6 +7,8 @@ const StartMenu = ({ dispatch, setResults }) => {
   useEffect(() => {
     if (query) {
       setResults(fs.findAllItemsByQuery(query))
+    } else {
+      setResults([])
     }
   }, [query])
 
