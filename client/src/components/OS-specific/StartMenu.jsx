@@ -124,6 +124,7 @@ const StartMenu = ({ dispatch, setResults }) => {
                   setQuery(e.target.value)
                 }}
                 placeholder="Search Filesystem"
+                autocomplete="off"
               />
             </div>
           </form>
