@@ -1,7 +1,11 @@
-// server.js
+// Socket server implementation only for now. User configuration with MongoDB pending.
+// Refer to "server" folder for MongoDB configuration
+
+// Import express and instantiate an express server called "app"
 const express = require("express")
 const app = express()
 
+// Middleware
 const cors = require('cors');
 app.use(cors());
 
